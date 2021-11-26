@@ -8,7 +8,7 @@ namespace HammingApi.Models
         public HammingCodeContext(DbContextOptions<HammingCodeContext> options) : base(options)
         {
         }
-        public DbSet<HammingCodeContext> HammingCodes { get; set; } = null!;
+        public DbSet<HammingCode> HammingCodes { get; set; } = null!;
     }
     
 }
