@@ -1,4 +1,6 @@
-namespace HammingApi;
+using System;
+
+namespace backend;
 
 public class WeatherForecast
 {

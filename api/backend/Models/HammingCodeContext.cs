@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
-namespace HammingApi.Models
+namespace backend.Models
 {
     public class HammingCodeContext : DbContext
     {
@@ -9,6 +9,8 @@ namespace HammingApi.Models
         {
         }
         public DbSet<HammingCode> HammingCodes { get; set; } = null!;
+
+        
     }
     
 }

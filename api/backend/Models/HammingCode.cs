@@ -1,4 +1,4 @@
-namespace HammingApi.Models
+namespace backend.Models
 {
     public class HammingCode
     {

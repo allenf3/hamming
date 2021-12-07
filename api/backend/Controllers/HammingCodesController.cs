@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using HammingApi.Models;
+using backend.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace HammingApi.Controllers
+namespace bakend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
