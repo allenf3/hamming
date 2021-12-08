@@ -10,7 +10,10 @@ namespace backend.Models
         }
         public DbSet<HammingCode> HammingCodes { get; set; } = null!;
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HammingCode>().HasData(new HammingCode { Id = 1, Code = "01010101" });
+        }
     }
     
 }

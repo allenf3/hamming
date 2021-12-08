@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const HammingInfo = () => {
-  const [hammingCode, setHammingCode] = useState('');
+  const [hammingCode, setHammingCode] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const HammingInfo = () => {
   }
 
   return (
-    <h2>{hammingCode}</h2>
+    <h2>{hammingCode.code}</h2>
   );
 };
 

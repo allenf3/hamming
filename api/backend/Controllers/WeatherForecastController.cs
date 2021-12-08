@@ -24,18 +24,11 @@ public class WeatherForecastController : ControllerBase
         _db = db;
         _logger = logger;
     }
-
-    [HttpGet(Name = "GetWeatherForecast")]
-
-    // public string Get()
-    // {
-    //     return "00001111";
-    // }
     
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        HammingCode hammingCode = null;
+        HammingCode? hammingCode = null;
 
         try
         {
@@ -54,16 +47,4 @@ public class WeatherForecastController : ControllerBase
 
         return new OkObjectResult(hammingCode);
     }
-
-    // public string 
-    // public IEnumerable<WeatherForecast> Get()
-    // {
-    //     return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-    //     {
-    //         Date = DateTime.Now.AddDays(index),
-    //         TemperatureC = Random.Shared.Next(-20, 55),
-    //         Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-    //     })
-    //     .ToArray();
-    // }
 }
