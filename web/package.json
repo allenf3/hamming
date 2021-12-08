@@ -16,7 +16,14 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js": "eslint --ext .jsx,.js src/",
+    "lint:fix": "eslint --ext .jsx,.js src/ --fix",
+    "lint:scss": "stylelint **/**/*.scss",
+    "lint": "npm run lint:scss && npm run lint:js",
+    "e2e": "cypress run",
+    "e2e:gui": "cypress open",
+    "ci": "npm run lint && CI=true npm run test && npm run build && npm run e2e"
   },
   "eslintConfig": {
     "extends": [
@@ -37,13 +44,24 @@
     ]
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^8.0.0-rc.1",
+    "axios-mock-adapter": "^1.20.0",
     "cypress": "^9.1.1",
+    "cypress-cucumber-preprocessor": "^4.3.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.26.1",
-    "eslint-plugin-react-hooks": "^4.2.0"
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "postcss-scss": "^4.0.2",
+    "stylelint": "^14.0.1",
+    "stylelint-config-standard-scss": "^2.0.1",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.0.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
   }
 }
