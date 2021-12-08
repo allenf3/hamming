@@ -6,7 +6,7 @@ Given('I am on the app', () => {
   cy.visit('/');
 });
 
-Given('I am on the {page} Page', (page) => {
+Given('I am on the {string} Page', (page) => {
   cy.visit(`/${page}`);
 });
 
