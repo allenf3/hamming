@@ -1,32 +1,19 @@
 import React from 'react';
 import './App.css';
+import { Route, Routes } from 'react-router';
+import Learn from './Learn';
+import Practice from './Practice';
+import Reports from './Reports';
+import Home from './Home';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div>
-          <button
-            className="main-nav-button"
-            type="button"
-          >
-            Learn
-          </button>
-          <button
-            className="main-nav-button"
-            type="button"
-          >
-            Practice
-          </button>
-          <button
-            className="main-nav-button"
-            type="button"
-          >
-            Reports
-          </button>
-        </div>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/learn" element={<Learn />} />
+      <Route path="/practice" element={<Practice />} />
+      <Route path="/reports" element={<Reports />} />
+      <Route path="/" element={<Home />} />
+    </Routes>
   );
 }
 
