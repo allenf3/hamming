@@ -38,7 +38,6 @@ function Home() {
               <Button
                 variant="contained"
                 type="button"
-                fontsize="large"
               >
                 Practice
               </Button>
