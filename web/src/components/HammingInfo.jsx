@@ -25,7 +25,10 @@ const HammingInfo = () => {
   }
 
   return (
-    <h2>{hammingCode.code}</h2>
+    <>
+      <h1>Practice working with Hamming codes</h1>
+      <h2>{hammingCode.code}</h2>
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Button from '@mui/material/Button';
-import './Home.css';
 import { createTheme, ThemeProvider, Box } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 
