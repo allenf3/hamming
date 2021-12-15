@@ -15,25 +15,28 @@ function Home() {
             direction="row"
             alignItems="center"
             justifyContent="center"
-            style={{ minHeight: '100vh' }}
+            style={
+              {
+                minHeight: '100vh',
+                gap: 50,
+                size: 50,
+              }
+            }
           >
             <Button
               variant="contained"
-              className="main-nav-button"
               type="button"
             >
               Learn
             </Button>
             <Button
               variant="contained"
-              className="main-nav-button"
               type="button"
             >
               Practice
             </Button>
             <Button
               variant="contained"
-              className="main-nav-button"
               type="button"
             >
               Reports
