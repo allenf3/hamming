@@ -2,24 +2,20 @@ import React from 'react';
 import './App.css';
 import Button from '@mui/material/Button';
 import './Home.css';
-import { Grid } from '@mui/material';
+import { Box } from '@mui/material';
 
 function Home() {
-  return (
+  const NavigationButtons = () => (
     <div className="Home">
       <header className="App-header">
         <div>
-          <Grid
-            container
-            spacing={0}
-            direction="row"
-            alignItems="center"
-            justifyContent="center"
-            style={
+          <Box
+            sx={
               {
-                minHeight: '100vh',
-                gap: 50,
-                size: 50,
+                display: 'grid',
+                gridTemplateColumns: 'repeat(3)',
+                minHeight: '85vh',
+                gap: 18,
               }
             }
           >
@@ -41,10 +37,18 @@ function Home() {
             >
               Reports
             </Button>
-          </Grid>
+          </Box>
         </div>
       </header>
     </div>
+  );
+
+  return (
+    <div>
+      <h1>Hamming Codes</h1>
+      <NavigationButtons />
+    </div>
+
   );
 }
 
