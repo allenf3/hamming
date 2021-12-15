@@ -2,9 +2,18 @@ import React from 'react';
 import './App.css';
 import Button from '@mui/material/Button';
 import './Home.css';
-import { Box } from '@mui/material';
+import { createTheme, ThemeProvider, Box } from '@mui/material';
+import { ClassNames } from '@emotion/react';
 
 function Home() {
+  const buttonTheme = createTheme({
+    typography: {
+      button: {
+        fontSize: 30,
+      },
+    },
+  });
+
   const NavigationButtons = () => (
     <div className="Home">
       <header className="App-header">
@@ -13,30 +22,33 @@ function Home() {
             sx={
               {
                 display: 'grid',
-                gridTemplateColumns: 'repeat(3)',
                 minHeight: '85vh',
                 gap: 18,
               }
             }
           >
-            <Button
-              variant="contained"
-              type="button"
-            >
-              Learn
-            </Button>
-            <Button
-              variant="contained"
-              type="button"
-            >
-              Practice
-            </Button>
-            <Button
-              variant="contained"
-              type="button"
-            >
-              Reports
-            </Button>
+            <ThemeProvider theme={buttonTheme}>
+              <Button
+                className={ClassNames.mainButton}
+                variant="contained"
+                type="button"
+              >
+                Learn
+              </Button>
+              <Button
+                variant="contained"
+                type="button"
+                fontsize="large"
+              >
+                Practice
+              </Button>
+              <Button
+                variant="contained"
+                type="button"
+              >
+                Reports
+              </Button>
+            </ThemeProvider>
           </Box>
         </div>
       </header>
