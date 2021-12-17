@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import { createTheme, ThemeProvider, Box } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 
@@ -32,19 +33,19 @@ function Home() {
                 variant="contained"
                 type="button"
               >
-                Learn
+                <Link to="/learn">Learn</Link>
               </Button>
               <Button
                 variant="contained"
                 type="button"
               >
-                Practice
+                <Link to="/practice">Practice</Link>
               </Button>
               <Button
                 variant="contained"
                 type="button"
               >
-                Reports
+                <Link to="/reports">Reports</Link>
               </Button>
             </ThemeProvider>
           </Box>
