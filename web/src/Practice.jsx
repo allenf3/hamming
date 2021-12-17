@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Practice working with Hamming codes
         </a>
         <HammingInfo />
       </header>
