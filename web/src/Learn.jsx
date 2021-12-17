@@ -12,7 +12,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn about Hamming Codes
+          Learn about Hamming codes
         </a>
         <HammingInfo />
       </header>
