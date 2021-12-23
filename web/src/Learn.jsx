@@ -1,23 +1,13 @@
 import React from 'react';
-import './App.css';
-import HammingInfo from './components/HammingInfo';
+import { Link } from 'react-router-dom';
 
-function App() {
+function Learn() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn about Hamming codes
-        </a>
-        <HammingInfo />
-      </header>
+    <div>
+      <h1>Learn about Hamming codes</h1>
+      <Link to="/">Home</Link>
     </div>
   );
 }
 
-export default App;
+export default Learn;
