@@ -14,3 +14,7 @@ Feature: Home Page
   Scenario: I can navigate to practice
     When I click on 'Practice'
     Then I see 'Practice working with Hamming codes'
+
+  Scenario: I can navigate to reports
+    When I click on 'Reports'
+    Then I see 'View Reports'
