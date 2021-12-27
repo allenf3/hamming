@@ -10,3 +10,7 @@ Feature: Home Page
   Scenario: I can navigate to learn
     When I click on 'Learn'
     Then I see 'Learn about Hamming codes'
+
+  Scenario: I can navigate to practice
+    When I click on 'Practice'
+    Then I see 'Practice working with Hamming codes'

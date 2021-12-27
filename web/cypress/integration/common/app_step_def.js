@@ -6,8 +6,8 @@ Given('I am on the home page', () => {
   cy.visit('/');
 });
 
-Given('I am on the learn page', () => {
-  cy.visit('/learn');
+Given('I am on the {string} page', (page) => {
+  cy.visit(`/${page}`);
 });
 
 Then('I see {string}', (label) => {

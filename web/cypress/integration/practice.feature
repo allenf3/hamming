@@ -1,6 +1,6 @@
-Feature: Learn Page
-  Background: Go to Learn
-    Given I am on the 'learn' page
+Feature: Practice Page
+  Scenario: Go to Practice
+    Given I am on the 'practice' page
 
   Scenario: I can navigate to Home
     When I click on 'Home'
