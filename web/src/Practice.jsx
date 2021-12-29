@@ -30,10 +30,10 @@ function Practice() {
   return (
     <div className="main">
       <h1>Practice working with Hamming codes</h1>
-      <div>
+      <div className="hammingGrid">
         {code.map((bit, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <Button key={index} variant="contained" type="button" size="large" className="hammingBit">
+          <Button key={index} variant="contained" type="button" className="hammingBit">
             { bit }
           </Button>
         ))}
