@@ -4,7 +4,7 @@ using Xunit;
 
 namespace backend.Tests;
 
-public class UnitTest1
+public class HammingCodeTests
 {
     [Fact]
     public void HammingCodeProperlyConverted()
