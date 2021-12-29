@@ -1,9 +1,10 @@
 using System;
+using System.Text;
+
 namespace backend.Models
 {
     public class HammingCode
     {
-        public long Id { get; set; }
         public Byte[] Code { get; set; }
 
         public HammingCode(string code)
@@ -16,6 +17,26 @@ namespace backend.Models
             {
                 throw new Exception();
             }
+        }
+
+        public char[] GetChars()
+        {
+            StringBuilder sb = new();
+            for (int i = 0; i < Code.Length; i++)
+            {
+                for (int j = 7; j >= 0; j--)
+                {
+                    if ((Code[i] & (1 << j)) != 0)
+                    {
+                        sb.Append("1");
+                    }
+                    else
+                    {
+                        sb.Append("0");
+                    }
+                }
+            }
+            return sb.ToString().ToCharArray();
         }
 
         private Byte[] convertCodeToBytes(string bitsToConvert)
