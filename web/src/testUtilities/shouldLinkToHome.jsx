@@ -8,7 +8,7 @@ const shouldLinkToHome = async (Component) => {
       <Component />
     </BrowserRouter>,
   );
-  expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
+  expect(await screen.findByRole('link', { name: 'Home' })).toBeInTheDocument();
 };
 
 export default shouldLinkToHome;
