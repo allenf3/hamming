@@ -1,23 +1,35 @@
 import React from 'react';
-import './App.css';
-import HammingInfo from './components/HammingInfo';
+import { Link } from 'react-router-dom';
 
-function App() {
+const HammingBit = () => (
+  <button type="button" className="hammingBit">
+    1
+  </button>
+);
+
+function Practice() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Practice working with Hamming codes
-        </a>
-        <HammingInfo />
-      </header>
+    <div>
+      <h1>Practice working with Hamming codes</h1>
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <HammingBit />
+      <Link to="/">Home</Link>
     </div>
   );
 }
 
-export default App;
+export default Practice;

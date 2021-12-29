@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Route, Routes } from 'react-router';
 import Learn from './Learn';
 import Practice from './Practice';
