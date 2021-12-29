@@ -24,4 +24,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\backend\HammingApi.csproj" />
+  </ItemGroup>
+
 </Project>
