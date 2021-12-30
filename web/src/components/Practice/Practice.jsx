@@ -1,10 +1,10 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import './Practice.css';
+import HammingGrid from './HammingGrid/HammingGrid';
 
-function Practice() {
+const Practice = () => {
   const [code, setCode] = useState([]);
   const [error, setError] = useState(null);
 
@@ -30,17 +30,10 @@ function Practice() {
   return (
     <div className="main">
       <h1>Practice working with Hamming codes</h1>
-      <div className="hammingGrid">
-        {code.map((bit, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <Button key={index} variant="contained" type="button" className="hammingBit">
-            { bit }
-          </Button>
-        ))}
-      </div>
+      <HammingGrid code={code} />
       <Link to="/">Home</Link>
     </div>
   );
-}
+};
 
 export default Practice;

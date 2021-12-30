@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router';
 import Learn from './Learn';
-import Practice from './Practice';
+import Practice from './components/Practice/Practice';
 import Reports from './Reports';
 import Home from './Home';
 

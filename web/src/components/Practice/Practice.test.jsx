@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Practice from './Practice';
-import shouldLinkToHome from './testUtilities/shouldLinkToHome';
+import shouldLinkToHome from '../../testUtilities/shouldLinkToHome';
 
 const testCodeValid = ['1', '0', '1', '1', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '1'];
 
