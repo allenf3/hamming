@@ -18,3 +18,11 @@
   display: flex;
   margin: 10px;
 }
+
+button.selected-hamming-bit {
+  background-color: #cbd8dd;
+}
+
+button.selected-hamming-bit:hover {
+  background-color: #a9b7bd;
+}
