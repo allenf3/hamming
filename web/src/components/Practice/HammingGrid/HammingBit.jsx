@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
-const HammingBit = ({ bit, index }) => (
-  <Button key={index} variant="contained" type="button" className="hammingBit">
-    { bit }
-  </Button>
-);
+function HammingBit({ bit, index }) {
+  const [selected, setSelected] = useState(false);
+  return (
+    <Button
+      onClick={() => setSelected(!selected)}
+      key={index}
+      variant="contained"
+      type="button"
+      className={selected ? 'selected-hamming-bit' : 'hamming-bit'}
+    >
+      { bit }
+    </Button>
+  );
+}
 
 HammingBit.defaultProps = {
   bit: '',

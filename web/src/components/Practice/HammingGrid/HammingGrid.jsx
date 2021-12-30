@@ -6,7 +6,7 @@ const HammingGrid = ({ code }) => (
   <div className="hammingGrid">
     { code.map((bit, index) => (
       // eslint-disable-next-line react/no-array-index-key
-      <HammingBit bit={bit} index={index} />
+      <HammingBit key={index} bit={bit} index={index} />
     ))}
   </div>
 );

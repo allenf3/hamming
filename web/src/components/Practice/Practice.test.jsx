@@ -44,7 +44,7 @@ test('click changes bit class', async () => {
   const bits = await screen.findAllByText('0');
   const bitToClick = bits[4];
   expect(bitToClick).toBeInTheDocument();
-  expect(bitToClick.classList.contains('bitClicked')).toBe(false);
+  expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
   fireEvent.click(bitToClick);
-  expect(bitToClick.classList.contains('bitClicked')).toBe(true);
+  expect(bitToClick.classList.contains('selected-hamming-bit')).toBe(true);
 });
