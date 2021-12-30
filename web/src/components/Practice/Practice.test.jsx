@@ -33,3 +33,18 @@ test('sixteen bits visible on page', async () => {
 test('home link present on practice page', async () => {
   await shouldLinkToHome(Practice);
 });
+
+test('click changes bit class', async () => {
+  render(
+    <BrowserRouter>
+      <Practice />
+    </BrowserRouter>,
+  );
+
+  const bits = await screen.findAllByText('0');
+  const bitToClick = bits[4];
+  expect(bitToClick).toBeInTheDocument();
+  expect(bitToClick.classList.contains('bitClicked')).toBe(false);
+  fireEvent.click(bitToClick);
+  expect(bitToClick.classList.contains('bitClicked')).toBe(true);
+});
