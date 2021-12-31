@@ -48,3 +48,27 @@ test('click changes bit class', async () => {
   fireEvent.click(bitToClick);
   expect(bitToClick.classList.contains('selected-hamming-bit')).toBe(true);
 });
+
+test('cannot select multiple bits', async () => {
+  render(
+    <BrowserRouter>
+      <Practice />
+    </BrowserRouter>,
+  );
+
+  const bits = await screen.findAllByText('0');
+  const firstBit = bits[2];
+  const secondBit = bits[5];
+  expect(firstBit).toBeInTheDocument();
+  expect(secondBit).toBeInTheDocument();
+  expect(firstBit.classList.contains('hamming-bit')).toBe(true);
+  expect(secondBit.classList.contains('hamming-bit')).toBe(true);
+  expect(firstBit.classList.contains('selected-hamming-bit')).toBe(false);
+  expect(secondBit.classList.contains('selected-hamming-bit')).toBe(false);
+  fireEvent.click(firstBit);
+  fireEvent.click(secondBit);
+  expect(firstBit.classList.contains('hamming-bit')).toBe(false);
+  expect(secondBit.classList.contains('hamming-bit')).toBe(true);
+  expect(firstBit.classList.contains('selected-hamming-bit')).toBe(true);
+  expect(secondBit.classList.contains('selected-hamming-bit')).toBe(false);
+});

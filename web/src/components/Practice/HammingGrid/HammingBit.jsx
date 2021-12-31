@@ -2,11 +2,23 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
-function HammingBit({ bit, index }) {
+function HammingBit({
+  bit, index, anySelected, toggleAnySelected,
+}) {
   const [selected, setSelected] = useState(false);
+  const handleClick = () => {
+    if (selected) {
+      setSelected(!selected);
+      toggleAnySelected();
+    } else if (!anySelected) {
+      setSelected(!selected);
+      toggleAnySelected();
+    }
+  };
+
   return (
     <Button
-      onClick={() => setSelected(!selected)}
+      onClick={handleClick}
       key={index}
       variant="contained"
       type="button"
@@ -20,11 +32,15 @@ function HammingBit({ bit, index }) {
 HammingBit.defaultProps = {
   bit: '',
   index: 0,
+  anySelected: false,
+  toggleAnySelected: {},
 };
 
 HammingBit.propTypes = {
   bit: PropTypes.string,
   index: PropTypes.number,
+  anySelected: PropTypes.bool,
+  toggleAnySelected: PropTypes.func,
 };
 
 export default HammingBit;
