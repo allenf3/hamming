@@ -3,8 +3,8 @@
 }
 
 .hammingGrid {
-  width: 750px;
-  height: 750px;
+  width: 600px;
+  height: 520px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -14,13 +14,14 @@
 .hammingGrid > button {
   font-size: 40pt;
   font-weight: bold;
-  width: 160px;
+  width: 120px;
   display: flex;
   margin: 10px;
 }
 
 button.selected-hamming-bit {
   background-color: #cbd8dd;
+  color: #b71c1c;
 }
 
 button.selected-hamming-bit:hover {
