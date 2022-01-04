@@ -2,13 +2,17 @@
   padding-left: 20px;
 }
 
+.container {
+  display: flex;
+}
+
 .hammingGrid {
   width: 600px;
   height: 520px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-left: 200px;
+  padding-left: 150px;
 }
 
 .hammingGrid > button {
@@ -19,6 +23,10 @@
   margin: 10px;
 }
 
+.right {
+  float: right;
+}
+
 button.selected-hamming-bit {
   background-color: #cbd8dd;
   color: #b71c1c;
@@ -26,4 +34,28 @@ button.selected-hamming-bit {
 
 button.selected-hamming-bit:hover {
   background-color: #a9b7bd;
+}
+
+button.selected-no-errors {
+  background-color: #66bb6a;
+  color: #fafafa;
+  width: 240px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+button.selected-no-errors:hover {
+  color: #01579b;
+  width: 240px;
+  height: 50px;
+  margin-top: 10px;
+
+}
+
+button.no-errors {
+  background-color: #fafafa;
+  width: 240px;
+  height: 50px;
+  margin-top: 10px;
+
 }

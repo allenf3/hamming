@@ -3,16 +3,16 @@ import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
 function HammingBit({
-  bit, index, anySelected, toggleAnySelected,
+  bit, index, anySelected, toggleSelected,
 }) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
     if (selected) {
       setSelected(!selected);
-      toggleAnySelected();
+      toggleSelected();
     } else if (!anySelected) {
       setSelected(!selected);
-      toggleAnySelected();
+      toggleSelected();
     }
   };
 
@@ -33,14 +33,14 @@ HammingBit.defaultProps = {
   bit: '',
   index: 0,
   anySelected: false,
-  toggleAnySelected: {},
+  toggleSelected: {},
 };
 
 HammingBit.propTypes = {
   bit: PropTypes.string,
   index: PropTypes.number,
   anySelected: PropTypes.bool,
-  toggleAnySelected: PropTypes.func,
+  toggleSelected: PropTypes.func,
 };
 
 export default HammingBit;
