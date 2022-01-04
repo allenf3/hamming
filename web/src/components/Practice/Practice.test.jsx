@@ -21,7 +21,6 @@ test('sixteen bits visible on page', async () => {
   const bitArraySize = 16;
   const mockApi = new MockAdapter(axios);
   mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
-
   render(
     <BrowserRouter>
       <Practice />
@@ -80,6 +79,6 @@ test('no errors button is in the document', async () => {
     </BrowserRouter>,
   );
 
-  const noErrors = await screen.findByRole('button', { pressed: false });
+  const noErrors = await screen.findByText('If no errors, click here');
   expect(noErrors).toBeInTheDocument();
 });

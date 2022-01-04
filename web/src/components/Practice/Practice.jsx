@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Practice.css';
@@ -38,7 +37,6 @@ const Practice = () => {
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleSelected} />
         <NoErrors anySelected={anySelected} />
       </div>
-      <Link to="/">Home</Link>
       <HomeLink />
     </div>
   );
