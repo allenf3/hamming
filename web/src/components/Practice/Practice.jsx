@@ -39,6 +39,7 @@ const Practice = () => {
         <NoErrors anySelected={anySelected} />
       </div>
       <Link to="/">Home</Link>
+      <HomeLink />
     </div>
   );
 };
