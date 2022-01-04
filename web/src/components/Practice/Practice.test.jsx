@@ -72,3 +72,14 @@ test('cannot select multiple bits', async () => {
   expect(firstBit.classList.contains('selected-hamming-bit')).toBe(true);
   expect(secondBit.classList.contains('selected-hamming-bit')).toBe(false);
 });
+
+test('no errors button is in the document', async () => {
+  render(
+    <BrowserRouter>
+      <Practice />
+    </BrowserRouter>,
+  );
+
+  const noErrors = await screen.findByRole('button', { pressed: false });
+  expect(noErrors).toBeInTheDocument();
+});
