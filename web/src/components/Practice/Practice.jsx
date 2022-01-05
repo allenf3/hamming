@@ -4,6 +4,7 @@ import './Practice.css';
 import HomeLink from '../sharedComponents/HomeLink';
 import HammingGrid from './HammingGrid/HammingGrid';
 import NoErrors from './NoErrors';
+import TwoErrors from './TwoErrors';
 
 const Practice = () => {
   const [code, setCode] = useState([]);
@@ -35,7 +36,10 @@ const Practice = () => {
       <h1>Practice working with Hamming codes</h1>
       <div className="container">
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleSelected} />
-        <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+        <div className="right">
+          <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+          <TwoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+        </div>
       </div>
       <HomeLink />
     </div>

@@ -80,3 +80,58 @@ test('bits can not be selected if no errors is selected', async () => {
   fireEvent.click(bitToClick);
   expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
 });
+
+test('two errors button is in the document', async () => {
+  testSetupAndRender();
+  const twoErrors = await screen.findByText('If two errors, click here');
+  expect(twoErrors).toBeInTheDocument();
+});
+
+test('bits can not be selected if two errors is selected', async () => {
+  testSetupAndRender();
+  const twoErrors = await screen.findByText('If two errors, click here');
+  fireEvent.click(twoErrors);
+  const twoErrorsSelected = await screen.findByText('Two Errors');
+  expect(twoErrorsSelected).toBeInTheDocument();
+  const bits = await screen.findAllByText('0');
+  const bitToClick = bits[4];
+  expect(bitToClick).toBeInTheDocument();
+  expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
+  fireEvent.click(bitToClick);
+  expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
+});
+
+test('two errors button can not be selected if bit is already selected', async () => {
+  testSetupAndRender();
+  const bits = await screen.findAllByText('0');
+  const bitToClick = bits[4];
+  expect(bitToClick).toBeInTheDocument();
+  fireEvent.click(bitToClick);
+  const twoErrors = await screen.findByText('If two errors, click here');
+  expect(twoErrors.classList.contains('two-errors')).toBe(true);
+  fireEvent.click(twoErrors);
+  expect(twoErrors.classList.contains('two-errors')).toBe(true);
+});
+
+test('two errors button can not be selected if no errors button is already selected', async () => {
+  testSetupAndRender();
+  const noErrors = await screen.findByText('If no errors, click here');
+  expect(noErrors).toBeInTheDocument();
+  fireEvent.click(noErrors);
+  const twoErrors = await screen.findByText('If two errors, click here');
+  expect(twoErrors.classList.contains('two-errors')).toBe(true);
+  fireEvent.click(twoErrors);
+  expect(twoErrors.classList.contains('two-errors')).toBe(true);
+});
+
+test('no errors button can not be selected if two errors button is already selected', async () => {
+  testSetupAndRender();
+  const twoErrors = await screen.findByText('If two errors, click here');
+  expect(twoErrors).toBeInTheDocument();
+  fireEvent.click(twoErrors);
+  const noErrors = await screen.findByText('If no errors, click here');
+  expect(noErrors).toBeInTheDocument();
+  fireEvent.click(noErrors);
+  expect(noErrors.classList.contains('no-errors')).toBe(true);
+  expect(noErrors.classList.contains('selected-no-errors')).toBe(false);
+});

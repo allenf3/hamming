@@ -40,7 +40,7 @@ button.selected-no-errors {
   background-color: #66bb6a;
   border-color: #1b5e20;
   color: #e8f5e9;
-  width: 240px;
+  width: 250px;
   height: 50px;
   margin-top: 10px;
 }
@@ -49,7 +49,7 @@ button.selected-no-errors:hover {
   background-color: #81c784;
   color: #1b5e20;
   border-color: #1b5e20;
-  width: 240px;
+  width: 250px;
   height: 50px;
   margin-top: 10px;
 }
@@ -58,11 +58,45 @@ button.no-errors {
   background-color: #fafafa;
   border-color: #1b5e20;
   color: #1b5e20;
-  width: 240px;
+  width: 250px;
   height: 50px;
   margin-top: 10px;
 }
 
 button.no-errors:hover {
+  background-color: #e8f5e9;
   border-color: #1b5e20;
+}
+
+button.two-errors {
+  background-color: #fafafa;
+  border-color: #f44336;
+  color: #f44336;
+  width: 250px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+button.selected-two-errors {
+  background-color: #b71c1c;
+  border-color: #b71c1c;
+  color: #ffcdd2;
+  width: 250px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+button.selected-two-errors:hover {
+  background-color: #f44336;
+  color: #ffcdd2;
+  border-color: #1b5e20;
+  width: 250px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+button.two-errors:hover {
+  background-color: #ffcdd2;
+  border-color: #f44336;
+  color: #f44336;
 }
