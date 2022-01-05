@@ -5,6 +5,7 @@ import HomeIcon from '@mui/icons-material/Home';
 const HomeLink = () => (
   <Link to="/">
     <HomeIcon color="action" fontSize="large" />
+    Home
   </Link>
 );
 
