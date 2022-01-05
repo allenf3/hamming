@@ -5,6 +5,7 @@ import HomeLink from '../sharedComponents/HomeLink';
 import HammingGrid from './HammingGrid/HammingGrid';
 import NoErrors from './NoErrors';
 import TwoErrors from './TwoErrors';
+import Submit from './Submit';
 
 const Practice = () => {
   const [code, setCode] = useState([]);
@@ -39,6 +40,7 @@ const Practice = () => {
         <div className="right">
           <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
           <TwoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+          <Submit anySelected={anySelected} />
         </div>
       </div>
       <HomeLink />

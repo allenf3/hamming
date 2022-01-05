@@ -135,3 +135,9 @@ test('no errors button can not be selected if two errors button is already selec
   expect(noErrors.classList.contains('no-errors')).toBe(true);
   expect(noErrors.classList.contains('selected-no-errors')).toBe(false);
 });
+
+test('submit button on the practice page', async () => {
+  testSetupAndRender();
+  const submitTest = await screen.findByText('Submit Response');
+  expect(submitTest).toBeInTheDocument();
+});
