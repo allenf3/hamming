@@ -22,7 +22,7 @@ function HammingGrid({ code, anySelected, toggleSelected }) {
 HammingGrid.defaultProps = {
   code: [],
   anySelected: false,
-  toggleSelected: '',
+  toggleSelected: () => {},
 };
 
 HammingGrid.propTypes = {
