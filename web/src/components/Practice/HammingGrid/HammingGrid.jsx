@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import HammingBit from './HammingBit';
 
-function HammingGrid({ code }) {
-  const [anySelected, setAnySelected] = useState(false);
-  const toggleAnySelected = () => setAnySelected(!anySelected);
-
+function HammingGrid({ code, anySelected, toggleSelected }) {
   return (
     <div className="hammingGrid">
       { code.map((bit, index) => (
@@ -14,7 +11,7 @@ function HammingGrid({ code }) {
           key={index}
           bit={bit}
           index={index}
-          toggleAnySelected={toggleAnySelected}
+          toggleSelected={toggleSelected}
           anySelected={anySelected}
         />
       ))}
@@ -24,10 +21,14 @@ function HammingGrid({ code }) {
 
 HammingGrid.defaultProps = {
   code: [],
+  anySelected: false,
+  toggleSelected: () => {},
 };
 
 HammingGrid.propTypes = {
   code: PropTypes.arrayOf(PropTypes.string),
+  anySelected: PropTypes.bool,
+  toggleSelected: PropTypes.func,
 };
 
 export default HammingGrid;

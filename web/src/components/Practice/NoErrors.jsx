@@ -2,16 +2,14 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
-function HammingBit({
-  bit, index, anySelected, toggleSelected,
-}) {
+function NoErrors({ anySelected, toggleSelected }) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
     if (selected) {
-      setSelected(!selected);
+      setSelected(false);
       toggleSelected();
     } else if (!anySelected) {
-      setSelected(!selected);
+      setSelected(true);
       toggleSelected();
     }
   };
@@ -19,28 +17,24 @@ function HammingBit({
   return (
     <Button
       onClick={handleClick}
-      key={index}
-      variant="contained"
+      key={1}
+      variant="outlined"
       type="button"
-      className={selected ? 'selected-hamming-bit' : 'hamming-bit'}
+      className={`${selected ? 'selected-no-errors' : 'no-errors'} right`}
     >
-      { bit }
+      { selected ? 'No Errors' : 'If no errors, click here' }
     </Button>
   );
 }
 
-HammingBit.defaultProps = {
-  bit: '',
-  index: 0,
+NoErrors.defaultProps = {
   anySelected: false,
   toggleSelected: () => {},
 };
 
-HammingBit.propTypes = {
-  bit: PropTypes.string,
-  index: PropTypes.number,
+NoErrors.propTypes = {
   anySelected: PropTypes.bool,
   toggleSelected: PropTypes.func,
 };
 
-export default HammingBit;
+export default NoErrors;

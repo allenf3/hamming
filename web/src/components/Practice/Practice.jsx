@@ -1,12 +1,15 @@
-import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Practice.css';
+import HomeLink from '../sharedComponents/HomeLink';
 import HammingGrid from './HammingGrid/HammingGrid';
+import NoErrors from './NoErrors';
 
 const Practice = () => {
   const [code, setCode] = useState([]);
   const [error, setError] = useState(null);
+  const [anySelected, setAnySelected] = useState(false);
+  const toggleSelected = () => setAnySelected(!anySelected);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,8 +33,11 @@ const Practice = () => {
   return (
     <div className="main">
       <h1>Practice working with Hamming codes</h1>
-      <HammingGrid code={code} />
-      <Link to="/">Home</Link>
+      <div className="container">
+        <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleSelected} />
+        <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+      </div>
+      <HomeLink />
     </div>
   );
 };
