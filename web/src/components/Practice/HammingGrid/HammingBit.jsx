@@ -33,7 +33,7 @@ HammingBit.defaultProps = {
   bit: '',
   index: 0,
   anySelected: false,
-  toggleSelected: {},
+  toggleSelected: () => {},
 };
 
 HammingBit.propTypes = {

@@ -35,7 +35,7 @@ const Practice = () => {
       <h1>Practice working with Hamming codes</h1>
       <div className="container">
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleSelected} />
-        <NoErrors anySelected={anySelected} />
+        <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
       </div>
       <HomeLink />
     </div>

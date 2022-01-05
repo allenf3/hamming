@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
-function NoErrors({ anySelected }) {
+function NoErrors({ anySelected, toggleSelected }) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
     if (selected) {
       setSelected(false);
+      toggleSelected();
     } else if (!anySelected) {
       setSelected(true);
+      toggleSelected();
     }
   };
 
@@ -27,10 +29,12 @@ function NoErrors({ anySelected }) {
 
 NoErrors.defaultProps = {
   anySelected: false,
+  toggleSelected: () => {},
 };
 
 NoErrors.propTypes = {
   anySelected: PropTypes.bool,
+  toggleSelected: PropTypes.func,
 };
 
 export default NoErrors;

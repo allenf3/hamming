@@ -34,7 +34,6 @@ test('home link present on practice page', async () => {
 
 test('click changes bit class', async () => {
   testSetupAndRender();
-
   const bits = await screen.findAllByText('0');
   const bitToClick = bits[4];
   expect(bitToClick).toBeInTheDocument();
@@ -45,7 +44,6 @@ test('click changes bit class', async () => {
 
 test('cannot select multiple bits', async () => {
   testSetupAndRender();
-
   const bits = await screen.findAllByText('0');
   const firstBit = bits[2];
   const secondBit = bits[5];
@@ -65,7 +63,20 @@ test('cannot select multiple bits', async () => {
 
 test('no errors button is in the document', async () => {
   testSetupAndRender();
-
   const noErrors = await screen.findByText('If no errors, click here');
   expect(noErrors).toBeInTheDocument();
+});
+
+test('bits can not be selected if no errors is selected', async () => {
+  testSetupAndRender();
+  const noErrors = await screen.findByText('If no errors, click here');
+  fireEvent.click(noErrors);
+  const noErrorsSelected = await screen.findByText('No Errors');
+  expect(noErrorsSelected).toBeInTheDocument();
+  const bits = await screen.findAllByText('0');
+  const bitToClick = bits[4];
+  expect(bitToClick).toBeInTheDocument();
+  expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
+  fireEvent.click(bitToClick);
+  expect(bitToClick.classList.contains('hamming-bit')).toBe(true);
 });
