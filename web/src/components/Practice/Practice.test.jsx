@@ -22,6 +22,8 @@ test('home link present on practice page', async () => {
 });
 
 test('click changes bit class', async () => {
+  const mockApi = new MockAdapter(axios);
+  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
   render(
     <BrowserRouter>
       <Practice />
@@ -37,6 +39,8 @@ test('click changes bit class', async () => {
 });
 
 test('cannot select multiple bits', async () => {
+  const mockApi = new MockAdapter(axios);
+  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
   render(
     <BrowserRouter>
       <Practice />
