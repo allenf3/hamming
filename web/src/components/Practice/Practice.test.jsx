@@ -17,18 +17,6 @@ test('practice page renders correctly', async () => {
   expect(await screen.findByText('Practice working with Hamming codes')).toBeInTheDocument();
 });
 
-test('sixteen bits visible on page', async () => {
-  const bitArraySize = 16;
-  const mockApi = new MockAdapter(axios);
-  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
-  render(
-    <BrowserRouter>
-      <Practice />
-    </BrowserRouter>,
-  );
-  expect(await screen.findAllByRole('button')).toHaveLength(bitArraySize);
-});
-
 test('home link present on practice page', async () => {
   await shouldLinkToHome(Practice);
 });
