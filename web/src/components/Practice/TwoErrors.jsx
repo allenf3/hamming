@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
-function NoErrors({ anySelected, toggleSelected }) {
+function TwoErrors({ anySelected, toggleSelected }) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
     if (selected) {
@@ -20,21 +20,21 @@ function NoErrors({ anySelected, toggleSelected }) {
       key={1}
       variant="outlined"
       type="button"
-      className={`${selected ? 'selected-no-errors' : 'no-errors'}`}
+      className={`${selected ? 'selected-two-errors' : 'two-errors'}`}
     >
-      { selected ? 'No Errors' : 'If no errors, click here' }
+      { selected ? 'Two Errors' : 'If two errors, click here' }
     </Button>
   );
 }
 
-NoErrors.defaultProps = {
+TwoErrors.defaultProps = {
   anySelected: false,
   toggleSelected: () => {},
 };
 
-NoErrors.propTypes = {
+TwoErrors.propTypes = {
   anySelected: PropTypes.bool,
   toggleSelected: PropTypes.func,
 };
 
-export default NoErrors;
+export default TwoErrors;
