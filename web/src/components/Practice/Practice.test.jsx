@@ -8,27 +8,32 @@ import shouldLinkToHome from '../../testUtilities/shouldLinkToHome';
 
 const testCodeValid = ['1', '0', '1', '1', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '1'];
 
-test('practice page renders correctly', async () => {
+const testSetup = () => {
+  const mockApi = new MockAdapter(axios);
+  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
+};
+
+const testSetupAndRender = () => {
+  testSetup();
   render(
     <BrowserRouter>
       <Practice />
     </BrowserRouter>,
   );
+};
+
+test('practice page renders correctly', async () => {
+  testSetupAndRender();
   expect(await screen.findByText('Practice working with Hamming codes')).toBeInTheDocument();
 });
 
 test('home link present on practice page', async () => {
+  testSetup();
   await shouldLinkToHome(Practice);
 });
 
 test('click changes bit class', async () => {
-  const mockApi = new MockAdapter(axios);
-  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
-  render(
-    <BrowserRouter>
-      <Practice />
-    </BrowserRouter>,
-  );
+  testSetupAndRender();
 
   const bits = await screen.findAllByText('0');
   const bitToClick = bits[4];
@@ -39,13 +44,7 @@ test('click changes bit class', async () => {
 });
 
 test('cannot select multiple bits', async () => {
-  const mockApi = new MockAdapter(axios);
-  mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
-  render(
-    <BrowserRouter>
-      <Practice />
-    </BrowserRouter>,
-  );
+  testSetupAndRender();
 
   const bits = await screen.findAllByText('0');
   const firstBit = bits[2];
@@ -65,11 +64,7 @@ test('cannot select multiple bits', async () => {
 });
 
 test('no errors button is in the document', async () => {
-  render(
-    <BrowserRouter>
-      <Practice />
-    </BrowserRouter>,
-  );
+  testSetupAndRender();
 
   const noErrors = await screen.findByText('If no errors, click here');
   expect(noErrors).toBeInTheDocument();
