@@ -11,7 +11,21 @@ const Practice = () => {
   const [code, setCode] = useState([]);
   const [error, setError] = useState(null);
   const [anySelected, setAnySelected] = useState(false);
-  const toggleSelected = () => setAnySelected(!anySelected);
+  const [noErrorsSelected, setNoErrorsSelected] = useState(false);
+  const [twoErrorsSelected, setTwoErrorsSelected] = useState(false);
+  const [bitSelected, setBitSelected] = useState(null);
+  const toggleAnySelected = (index) => {
+    setAnySelected(!anySelected);
+    setBitSelected(index);
+  };
+  const toggleNoErrorsSelected = () => {
+    setAnySelected(!anySelected);
+    setNoErrorsSelected(!noErrorsSelected);
+  };
+  const toggleTwoErrorsSelected = () => {
+    setAnySelected(!anySelected);
+    setTwoErrorsSelected(!twoErrorsSelected);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,10 +50,16 @@ const Practice = () => {
     <div className="main">
       <h1>Practice working with Hamming codes</h1>
       <div className="container">
-        <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleSelected} />
+        <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleAnySelected} />
         <div className="right">
-          <NoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
-          <TwoErrors toggleSelected={toggleSelected} anySelected={anySelected} />
+          <NoErrors
+            toggleSelected={toggleNoErrorsSelected}
+            anySelected={anySelected}
+            bitSelected={bitSelected}
+            noErrorsSelected={noErrorsSelected}
+            twoErrorsSelected={twoErrorsSelected}
+          />
+          <TwoErrors toggleSelected={toggleTwoErrorsSelected} anySelected={anySelected} />
           <Submit anySelected={anySelected} />
         </div>
       </div>

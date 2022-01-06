@@ -3,13 +3,13 @@ import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
 function NoErrors({ anySelected, toggleSelected }) {
-  const [selected, setSelected] = useState(false);
+  const [noErrorsSelected, setNoErrorsSelected] = useState(false);
   const handleClick = () => {
-    if (selected) {
-      setSelected(false);
+    if (noErrorsSelected) {
+      setNoErrorsSelected(false);
       toggleSelected();
     } else if (!anySelected) {
-      setSelected(true);
+      setNoErrorsSelected(true);
       toggleSelected();
     }
   };
@@ -20,9 +20,9 @@ function NoErrors({ anySelected, toggleSelected }) {
       key={1}
       variant="outlined"
       type="button"
-      className={`${selected ? 'selected-no-errors' : 'no-errors'}`}
+      className={`${noErrorsSelected ? 'selected-no-errors' : 'no-errors'}`}
     >
-      { selected ? 'No Errors' : 'If no errors, click here' }
+      { noErrorsSelected ? 'No Errors' : 'If no errors, click here' }
     </Button>
   );
 }

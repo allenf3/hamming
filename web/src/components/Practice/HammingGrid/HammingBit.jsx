@@ -9,10 +9,10 @@ function HammingBit({
   const handleClick = () => {
     if (selected) {
       setSelected(!selected);
-      toggleSelected();
+      toggleSelected(index);
     } else if (!anySelected) {
       setSelected(!selected);
-      toggleSelected();
+      toggleSelected(index);
     }
   };
 

@@ -3,7 +3,8 @@ import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
 function Submit({ anySelected }) {
-  const handleClick = () => {
+  const handleSubmit = () => {
+    // const response = { bit: null, noError: false, twoErrors: true };
     if (anySelected) {
       return '';
     }
@@ -11,15 +12,16 @@ function Submit({ anySelected }) {
   };
 
   return (
-    <Button
-      onClick={handleClick}
-      key={1}
-      variant="contained"
-      type="submit"
-      className="submit-response"
-    >
-      Submit Response
-    </Button>
+    <form onSubmit={handleSubmit}>
+      <Button
+        onClick={handleSubmit}
+        variant="contained"
+        type="submit"
+        className="submit-response"
+      >
+        Submit Response
+      </Button>
+    </form>
   );
 }
 

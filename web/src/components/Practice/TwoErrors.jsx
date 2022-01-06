@@ -3,13 +3,13 @@ import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 
 function TwoErrors({ anySelected, toggleSelected }) {
-  const [selected, setSelected] = useState(false);
+  const [twoErrorsSelected, setTwoErrorsSelected] = useState(false);
   const handleClick = () => {
-    if (selected) {
-      setSelected(false);
+    if (twoErrorsSelected) {
+      setTwoErrorsSelected(false);
       toggleSelected();
     } else if (!anySelected) {
-      setSelected(true);
+      setTwoErrorsSelected(true);
       toggleSelected();
     }
   };
@@ -20,9 +20,9 @@ function TwoErrors({ anySelected, toggleSelected }) {
       key={1}
       variant="outlined"
       type="button"
-      className={`${selected ? 'selected-two-errors' : 'two-errors'}`}
+      className={`${twoErrorsSelected ? 'selected-two-errors' : 'two-errors'}`}
     >
-      { selected ? 'Two Errors' : 'If two errors, click here' }
+      { twoErrorsSelected ? 'Two Errors' : 'If two errors, click here' }
     </Button>
   );
 }
