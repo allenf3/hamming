@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.ComponentModel;
 using System.Collections;
 using System.Text;
+using backend;
 
 namespace bakend.Controllers
 {
@@ -19,7 +20,8 @@ namespace bakend.Controllers
         [HttpGet]
         public char[] GetRandomHammingCode()
         {
-            HammingCode hc = new("1011101100010001");
+            var randomBytes = HammingUtilities.GetRandomBytes(2);
+            HammingCode hc = new(randomBytes);
             var sb = new StringBuilder();
             for (int i = 0; i < hc.Code.Length; i++)
             {
