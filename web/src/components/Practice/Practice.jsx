@@ -42,7 +42,7 @@ const Practice = () => {
 
   if (error) {
     return (
-      <div>There was an error fetching the codes.</div>
+      <div>There was an error fetching the code.</div>
     );
   }
 
@@ -60,7 +60,12 @@ const Practice = () => {
             twoErrorsSelected={twoErrorsSelected}
           />
           <TwoErrors toggleSelected={toggleTwoErrorsSelected} anySelected={anySelected} />
-          <Submit anySelected={anySelected} />
+          <Submit
+            anySelected={anySelected}
+            bitSelected={bitSelected}
+            noErrorsSelected={noErrorsSelected}
+            twoErrorsSelected={twoErrorsSelected}
+          />
         </div>
       </div>
       <HomeLink />
