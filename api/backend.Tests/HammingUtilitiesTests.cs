@@ -19,9 +19,20 @@ namespace backend.Tests
         {
             var myBytes = new byte[] { 172, 127 };
             var calculated = HammingUtilities.CalculateHammingCode(myBytes);
-
             Assert.Equal(204, calculated[0]);
             Assert.Equal(255, calculated[1]);
+
+            myBytes[0] = 75;
+            myBytes[1] = 178;
+            calculated = HammingUtilities.CalculateHammingCode(myBytes);
+            Assert.Equal(43, calculated[0]);
+            Assert.Equal(178, calculated[1]);
+
+            myBytes[0] = 18;
+            myBytes[1] = 233;
+            calculated = HammingUtilities.CalculateHammingCode(myBytes);
+            Assert.Equal(90, calculated[0]);
+            Assert.Equal(105, calculated[1]);
         }
     }
 }
