@@ -12,10 +12,4 @@ public class HammingCodeTests
     {
         Assert.Throws<Exception>(() => new HammingCode(new byte[0]));
     }
-
-    [Fact]
-    public void GetCharsWorks()
-    {
-
-    }
 }

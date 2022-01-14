@@ -45,13 +45,12 @@ namespace backend
                         randomBytes[groups[i].Parity / 8] = (byte)(randomBytes[groups[i].Parity / 8] ^ (1 << (7 - (groups[i].Parity % 8))));
 
                     }
-                    if (groupTotal % 2 == 1 && !parityBitValue) // add else before if
+                    else if (groupTotal % 2 == 1 && !parityBitValue)
                     {
                         randomBytes[groups[i].Parity / 8] = (byte)(randomBytes[groups[i].Parity / 8] ^ (1 << (7 - (groups[i].Parity % 8))));
                     }
 
                     groupTotal = 0;
-                    bitIsOn = false; //delete me
                 }
             }
             return randomBytes;
