@@ -34,5 +34,13 @@ namespace backend.Tests
             Assert.Equal(90, calculated[0]);
             Assert.Equal(105, calculated[1]);
         }
+
+        [Fact]
+        public void GenerateHammingCode_ReturnsByteArray()
+        {
+            var testHc = HammingUtilities.GenerateHammingCode(2);
+
+            Assert.Equal(2, testHc.Code.Length);
+        }
     }
 }

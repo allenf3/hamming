@@ -20,24 +20,9 @@ namespace bakend.Controllers
         [HttpGet]
         public char[] GetRandomHammingCode()
         {
-            var randomBytes = HammingUtilities.GetRandomBytes(2);
-            HammingCode hc = new(randomBytes);
-            var sb = new StringBuilder();
-            for (int i = 0; i < hc.Code.Length; i++)
-            {
-                for (int j = 7; j >= 0; j--)
-                {
-                    if ((hc.Code[i] & (1 << j)) != 0)
-                    {
-                        sb.Append("1");
-                    }
-                    else
-                    {
-                        sb.Append("0");
-                    }
-                }
-            }
-            return sb.ToString().ToCharArray();
+            var randomHammingCode = HammingUtilities.GenerateHammingCode(2);
+            var randomHammingCodeCharArray = HammingUtilities.CodeToCharArray(randomHammingCode.Code);
+            return randomHammingCodeCharArray;
         }
     }
 }

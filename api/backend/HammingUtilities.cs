@@ -1,4 +1,6 @@
 using System;
+using System.Text;
+using backend.Models;
 
 namespace backend
 {
@@ -55,5 +57,34 @@ namespace backend
             }
             return randomBytes;
         }
+
+        public static HammingCode GenerateHammingCode(int numBytes)
+        {
+            var randomBytes = GetRandomBytes(numBytes);
+            var correctedBytes = CalculateHammingCode(randomBytes);
+            HammingCode hc = new(correctedBytes);
+            return hc;
+        }
+
+        public static char[] CodeToCharArray(byte[] hammingCode)
+        {
+            var sb = new StringBuilder();
+            for (int i = 0; i < hammingCode.Length; i++)
+            {
+                for (int j = 7; j >= 0; j--)
+                {
+                    if ((hammingCode[i] & (1 << j)) != 0)
+                    {
+                        sb.Append("1");
+                    }
+                    else
+                    {
+                        sb.Append("0");
+                    }
+                }
+            }
+            return sb.ToString().ToCharArray();
+        }
+
     }
 }
