@@ -41,15 +41,15 @@ namespace backend
                         groupTotal += bitIsOn ? 1 : 0;
                     }
 
-                    var parityBitValue = (randomBytes[groups[i].Parity / 8] & (byte)(1 << 7 - (groups[i].Parity) % 8)) == 1 << 7 - (groups[i].Parity) % 8;
+                    var workingBit = groups[i].Parity;
+                    var parityBitValue = (randomBytes[workingBit / 8] & (byte)(1 << 7 - workingBit % 8)) == 1 << 7 - workingBit % 8;
                     if (groupTotal % 2 == 0 && parityBitValue)
                     {
-                        randomBytes[groups[i].Parity / 8] = (byte)(randomBytes[groups[i].Parity / 8] ^ (1 << (7 - (groups[i].Parity % 8))));
-
+                        randomBytes[workingBit / 8] = FlipOneBit(randomBytes[workingBit / 8], workingBit % 8);
                     }
                     else if (groupTotal % 2 == 1 && !parityBitValue)
                     {
-                        randomBytes[groups[i].Parity / 8] = (byte)(randomBytes[groups[i].Parity / 8] ^ (1 << (7 - (groups[i].Parity % 8))));
+                        randomBytes[workingBit / 8] = FlipOneBit(randomBytes[workingBit / 8], workingBit % 8);
                     }
 
                     groupTotal = 0;
