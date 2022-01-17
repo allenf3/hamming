@@ -9,6 +9,7 @@ import Submit from './Submit';
 
 const Practice = () => {
   const [code, setCode] = useState([]);
+  const [testId, setTestId] = useState('');
   const [error, setError] = useState(null);
   const [anySelected, setAnySelected] = useState(false);
   const [noErrorsSelected, setNoErrorsSelected] = useState(false);
@@ -32,7 +33,7 @@ const Practice = () => {
       try {
         const { data } = await axios.get(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`);
         setCode(data.TestCodeCharArray);
-        setCode(data);
+        setTestId(data.Id);
       } catch (err) {
         setError(err);
       }
@@ -66,6 +67,7 @@ const Practice = () => {
             bitSelected={bitSelected}
             noErrorsSelected={noErrorsSelected}
             twoErrorsSelected={twoErrorsSelected}
+            testId={testId}
           />
         </div>
       </div>
