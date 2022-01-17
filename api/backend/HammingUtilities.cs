@@ -86,5 +86,10 @@ namespace backend
             return sb.ToString().ToCharArray();
         }
 
+        public static byte FlipOneBit(byte bits, int bitToFlip)
+        {
+            bits = (byte)((byte)(1 << (7 - bitToFlip)) ^ bits);
+            return bits;
+        }
     }
 }

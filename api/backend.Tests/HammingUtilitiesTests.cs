@@ -42,5 +42,21 @@ namespace backend.Tests
 
             Assert.Equal(2, testHc.Code.Length);
         }
+
+        [Fact]
+        public void FlipOneBit_FlipsCorrectBit()
+        {
+            var sampleByte = (byte)127;
+            var sampleByteBitFlipped = HammingUtilities.FlipOneBit(sampleByte, 0);
+            Assert.Equal(255, sampleByteBitFlipped);
+
+            sampleByte = (byte)1;
+            sampleByteBitFlipped = HammingUtilities.FlipOneBit(sampleByte, 7);
+            Assert.Equal(0, sampleByteBitFlipped);
+
+            sampleByte = (byte)241;
+            sampleByteBitFlipped = HammingUtilities.FlipOneBit(sampleByte, 2);
+            Assert.Equal(209, sampleByteBitFlipped);
+        }
     }
 }
