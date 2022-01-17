@@ -11,7 +11,7 @@ using System.Text;
 using backend;
 using static backend.HammingUtilities;
 
-namespace bakend.Controllers
+namespace backend.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,7 +19,7 @@ namespace bakend.Controllers
     {
         // GET: api/HammingCodes
         [HttpGet]
-        public string GetRandomHammingCode()
+        public string Get()
         {
             var randomHammingCode = GenerateHammingCode(2);
             randomHammingCode.ErrorType = GetRandomTransmissionErrorType();
