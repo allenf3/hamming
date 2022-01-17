@@ -83,7 +83,7 @@ namespace backend.Tests
         {
             var controlBytes = new byte[] { 193 };
             var testBytes = new byte[] { 193 };
-            testBytes = FlipOneRandomBit(testBytes);
+            testBytes = FlipOneRandomBit(testBytes).NewByte;
             var controlSetBits = CountSetBits(controlBytes[0]);
             var testSetBits = CountSetBits(testBytes[0]);
             Assert.NotEqual(controlBytes, testBytes);
@@ -91,7 +91,7 @@ namespace backend.Tests
 
             controlBytes = new byte[] { 17, 204 };
             testBytes = new byte[] { 17, 204 };
-            testBytes = FlipOneRandomBit(testBytes);
+            testBytes = FlipOneRandomBit(testBytes).NewByte;
             controlSetBits = CountSetBits(controlBytes[0]) + CountSetBits(controlBytes[1]);
             testSetBits = CountSetBits(testBytes[0]) + CountSetBits(testBytes[1]);
             Assert.NotEqual(controlBytes, testBytes);

@@ -8,7 +8,7 @@ namespace backend.Tests;
 public class HammingCodeTests
 {
     [Fact]
-    public void WhenZeroBytes_HammingCodeThrowsException()
+    public void HammingCodeInitializedWithZeroBytes_ThrowsException()
     {
         Assert.Throws<Exception>(() => new HammingCode(new byte[0]));
     }

@@ -91,12 +91,12 @@ namespace backend
             bits = (byte)((byte)(1 << (7 - bitToFlip)) ^ bits);
             return bits;
         }
-        public static byte[] FlipOneRandomBit(byte[] bytes)
+        public static (byte[] NewByte, int FlippedBit) FlipOneRandomBit(byte[] bytes)
         {
             var byteSelector = new Random().Next(bytes.Length);
             var bitSelector = new Random().Next(8);
             bytes[byteSelector] = FlipOneBit(bytes[byteSelector], bitSelector);
-            return bytes;
+            return (bytes, bitSelector);
         }
 
         public static byte[] FlipTwoRandomBits(byte[] bytes)
@@ -120,9 +120,25 @@ namespace backend
             TwoBitsFlipped
         }
 
-        public static int CountSetBits(byte byteToCount)
+        public static TransmissionErrorType GetRandomTransmissionErrorType()
         {
-            return Convert.ToString(byteToCount, 2).ToCharArray().Count(c => c == '1');
+            var rand = new Random();
+            switch (rand.Next(3))
+            {
+                case 0:
+                    return TransmissionErrorType.NoError;
+                case 1:
+                    return TransmissionErrorType.OneBitFlipped;
+                case 2:
+                    return TransmissionErrorType.TwoBitsFlipped;
+                default:
+                    throw new Exception();
+            }
+        }
+
+        public static int CountSetBits(byte bits)
+        {
+            return Convert.ToString(bits, 2).ToCharArray().Count(c => c == '1');
         }
     }
 }

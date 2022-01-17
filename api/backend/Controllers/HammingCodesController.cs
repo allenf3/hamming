@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Collections;
 using System.Text;
 using backend;
+using static backend.HammingUtilities;
 
 namespace bakend.Controllers
 {
@@ -20,9 +21,21 @@ namespace bakend.Controllers
         [HttpGet]
         public char[] GetRandomHammingCode()
         {
-            var randomHammingCode = HammingUtilities.GenerateHammingCode(2);
-            var randomHammingCodeCharArray = HammingUtilities.CodeToCharArray(randomHammingCode.Code);
-            return randomHammingCodeCharArray;
+            var randomHammingCode = GenerateHammingCode(2);
+            randomHammingCode.ErrorType = GetRandomTransmissionErrorType();
+            switch (randomHammingCode.ErrorType)
+            {
+                case TransmissionErrorType.OneBitFlipped:
+                    var resultOfFlip = FlipOneRandomBit(randomHammingCode.Code);
+                    randomHammingCode.TestCode = resultOfFlip.NewByte;
+                    randomHammingCode.FlippedBit = resultOfFlip.FlippedBit;
+                    break;
+                case TransmissionErrorType.TwoBitsFlipped:
+                    randomHammingCode.TestCode = FlipTwoRandomBits(randomHammingCode.Code);
+                    break;
+            }
+            randomHammingCode.TestCodeCharArray = CodeToCharArray(randomHammingCode.TestCode);
+            return randomHammingCode.TestCodeCharArray;
         }
     }
 }
