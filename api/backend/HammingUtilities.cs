@@ -99,6 +99,20 @@ namespace backend
             return bytes;
         }
 
+        public static byte[] FlipTwoRandomBits(byte[] bytes)
+        {
+            var rand = new Random();
+            var bitOne = rand.Next(bytes.Length * 8);
+            var bitTwo = bitOne;
+            while (bitTwo == bitOne)
+            {
+                bitTwo = rand.Next(bytes.Length * 8);
+            }
+            bytes[bitOne / 8] = FlipOneBit(bytes[bitOne / 8], bitOne % 8);
+            bytes[bitTwo / 8] = FlipOneBit(bytes[bitTwo / 8], bitTwo % 8);
+            return bytes;
+        }
+
         public enum TransmissionErrorType
         {
             NoError,

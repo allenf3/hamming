@@ -63,7 +63,23 @@ namespace backend.Tests
         }
 
         [Fact]
-        public void FlipOneRandomBit_ChangesByteArray()
+        public void CountSetBits_GivesCorrectCount()
+        {
+            var testByte = (byte)255;
+            var setBitsInTestByte = CountSetBits(testByte);
+            Assert.Equal(8, setBitsInTestByte);
+
+            testByte = (byte)1;
+            setBitsInTestByte = CountSetBits(testByte);
+            Assert.Equal(1, setBitsInTestByte);
+
+            testByte = (byte)113;
+            setBitsInTestByte = CountSetBits(testByte);
+            Assert.Equal(4, setBitsInTestByte);
+        }
+
+        [Fact]
+        public void FlipOneRandomBit_FlipsExactlyOneBit()
         {
             var controlBytes = new byte[] { 193 };
             var testBytes = new byte[] { 193 };
@@ -83,19 +99,20 @@ namespace backend.Tests
         }
 
         [Fact]
-        public void CountSetBits_GivesCorrectCount()
+        public void FlipTwoRandomBits_FlipsExactlyTwoBits()
         {
-            var testByte = (byte)255;
-            var setBitsInTestByte = CountSetBits(testByte);
-            Assert.Equal(8, setBitsInTestByte);
-
-            testByte = (byte)1;
-            setBitsInTestByte = CountSetBits(testByte);
-            Assert.Equal(1, setBitsInTestByte);
-
-            testByte = (byte)113;
-            setBitsInTestByte = CountSetBits(testByte);
-            Assert.Equal(4, setBitsInTestByte);
+            int alterations = 0;
+            var controlBytes = new byte[] { 47, 190 };
+            var testBytes = new byte[] { 47, 190 };
+            testBytes = FlipTwoRandomBits(testBytes);
+            for (int i = 0; i < controlBytes.Length; i++)
+            {
+                var controlSetBits = Convert.ToString(controlBytes[i], 2).PadLeft(8, '0').ToCharArray();
+                var testSetBits = Convert.ToString(testBytes[i], 2).PadLeft(8, '0').ToCharArray();
+                alterations += controlSetBits.Zip(testSetBits, (a, b) => a != b).Count(difference => difference);
+            }
+            Assert.NotEqual(controlBytes, testBytes);
+            Assert.Equal(2, alterations);
         }
     }
 }
