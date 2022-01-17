@@ -18,7 +18,7 @@ namespace backend.Models
             if (checkCode(bytes))
             {
                 Code = bytes;
-                Id = new Guid();
+                Id = Guid.NewGuid();
                 TestCode = (Byte[])Code.Clone();
             }
             else
