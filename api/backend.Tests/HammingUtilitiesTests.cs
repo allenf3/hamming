@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using backend.Models;
 using Xunit;
 
@@ -57,6 +59,22 @@ namespace backend.Tests
             sampleByte = (byte)241;
             sampleByteBitFlipped = HammingUtilities.FlipOneBit(sampleByte, 2);
             Assert.Equal(209, sampleByteBitFlipped);
+        }
+
+        [Fact]
+        public void CountSetBits_GivesCorrectCount()
+        {
+            var testByte = (byte)255;
+            var setBitsInTestByte = HammingUtilities.CountSetBits(testByte);
+            Assert.Equal(8, setBitsInTestByte);
+
+            testByte = (byte)1;
+            setBitsInTestByte = HammingUtilities.CountSetBits(testByte);
+            Assert.Equal(1, setBitsInTestByte);
+
+            testByte = (byte)113;
+            setBitsInTestByte = HammingUtilities.CountSetBits(testByte);
+            Assert.Equal(4, setBitsInTestByte);
         }
     }
 }

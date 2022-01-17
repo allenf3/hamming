@@ -91,5 +91,10 @@ namespace backend
             bits = (byte)((byte)(1 << (7 - bitToFlip)) ^ bits);
             return bits;
         }
+
+        public static int CountSetBits(byte byteToCount)
+        {
+            return Convert.ToString(byteToCount, 2).ToCharArray().Count(c => c == '1');
+        }
     }
 }
