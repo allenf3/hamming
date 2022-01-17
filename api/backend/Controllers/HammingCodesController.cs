@@ -19,7 +19,7 @@ namespace bakend.Controllers
     {
         // GET: api/HammingCodes
         [HttpGet]
-        public char[] GetRandomHammingCode()
+        public string GetRandomHammingCode()
         {
             var randomHammingCode = GenerateHammingCode(2);
             randomHammingCode.ErrorType = GetRandomTransmissionErrorType();
@@ -35,7 +35,8 @@ namespace bakend.Controllers
                     break;
             }
             randomHammingCode.TestCodeCharArray = CodeToCharArray(randomHammingCode.TestCode);
-            return randomHammingCode.TestCodeCharArray;
+            string json = JsonConvert.SerializeObject(randomHammingCode);
+            return json;
         }
     }
 }
