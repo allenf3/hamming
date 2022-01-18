@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 function Submit({
-  anySelected, bitSelected, noErrorsSelected, twoErrorsSelected,
+  anySelected, bitSelected, noErrorsSelected, twoErrorsSelected, testId,
 }) {
   const [responseResult, setResponseResult] = useState('');
   const [error, setError] = useState('');
@@ -17,16 +17,18 @@ function Submit({
 
   if (responseResult) {
     return (
-      <div>{ JSON.stringify(responseResult) }</div>
+      <div>{ responseResult.data }</div>
     );
   }
 
   const handleSubmit = async () => {
-    const attempt = { bit: bitSelected, noError: noErrorsSelected, twoErrors: twoErrorsSelected };
-
+    const attempt = {
+      bitSelected, noErrorsSelected, twoErrorsSelected, testId,
+    };
     if (anySelected) {
       try {
-        await axios.post(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`, attempt)
+        await axios.post(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`, attempt,
+          { headers: { 'Content-Type': 'application/json' } })
           .then((result) => {
             setResponseResult(result);
           });
@@ -53,6 +55,7 @@ Submit.defaultProps = {
   bitSelected: null,
   noErrorsSelected: false,
   twoErrorsSelected: false,
+  testId: null,
 };
 
 Submit.propTypes = {
@@ -60,6 +63,7 @@ Submit.propTypes = {
   bitSelected: PropTypes.number,
   noErrorsSelected: PropTypes.bool,
   twoErrorsSelected: PropTypes.bool,
+  testId: PropTypes.string,
 };
 
 export default Submit;
