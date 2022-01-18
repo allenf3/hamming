@@ -96,8 +96,9 @@ namespace backend
         {
             var byteSelector = new Random().Next(bytes.Length);
             var bitSelector = new Random().Next(8);
-            bytes[byteSelector] = FlipOneBit(bytes[byteSelector], bitSelector);
-            return (bytes, bitSelector + (8 * byteSelector));
+            var adjustedBytes = (byte[])bytes.Clone();
+            adjustedBytes[byteSelector] = FlipOneBit(bytes[byteSelector], bitSelector);
+            return (adjustedBytes, bitSelector + (8 * byteSelector));
         }
 
         public static byte[] FlipTwoRandomBits(byte[] bytes)
