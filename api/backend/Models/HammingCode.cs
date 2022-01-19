@@ -1,40 +1,22 @@
 using System;
 using System.Text;
-using static backend.HammingUtilities;
+using static backend.Utils.HammingUtilities;
 
 namespace backend.Models
 {
     public class HammingCode
     {
-        public Guid Id { get; init; }
+        public int Id { get; init; }
         public Byte[] Code { get; set; }
-        public Byte[] TestCode { get; set; }
-        public Char[]? TestCodeCharArray { get; set; }
+        public Byte[] ExerciseCode { get; set; }
         public TransmissionErrorType? ErrorType { get; set; }
         public int? FlippedBit { get; set; }
 
+        public HammingCode() { }
         public HammingCode(byte[] bytes)
         {
-            if (checkCode(bytes))
-            {
-                Code = bytes;
-                Id = Guid.NewGuid();
-                TestCode = (Byte[])Code.Clone();
-            }
-            else
-            {
-                throw new Exception();
-            }
-        }
-
-        private bool checkCode(byte[] code)
-        {
-            var len = code.Length;
-            if (len > 0)
-            {
-                return true;
-            }
-            return false;
+            Code = bytes;
+            ExerciseCode = (Byte[])Code.Clone();
         }
     }
 }
