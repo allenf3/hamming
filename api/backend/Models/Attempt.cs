@@ -1,21 +1,15 @@
+using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace backend.Models
 {
     public class Attempt
     {
-        [JsonProperty("testId")]
+        [Required]
         public string? TestId { get; set; }
-
-        [JsonProperty("bitSelected")]
+        [Range(0, 63)]
         public int BitSelected { get; set; }
-
-        [JsonProperty("noErrorsSelected")]
         public bool NoErrorsSelected { get; set; }
-
-        [JsonProperty("twoErrorsSelected")]
         public bool TwoErorsSelected { get; set; }
-
-        public bool Correct { get; set; }
     }
 }
