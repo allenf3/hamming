@@ -1,15 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-using System.Linq;
-using Newtonsoft.Json;
-using System.ComponentModel;
-using System.Collections;
-using System.Text;
-using backend;
-using static backend.HammingUtilities;
+using static backend.Utils.HammingUtilities;
 
 namespace backend.Controllers
 {
@@ -17,11 +9,18 @@ namespace backend.Controllers
     [ApiController]
     public class HammingCodesController : ControllerBase
     {
-        public List<HammingCode> OutstandingCodes = new();
+        private readonly AppDbContext _db;
+        private readonly ILogger<HammingCodesController> _logger;
+
+        public HammingCodesController(AppDbContext db, ILogger<HammingCodesController> logger)
+        {
+            _db = db;
+            _logger = logger;
+        }
 
         // GET: api/HammingCodes
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
             var randomHammingCode = GenerateHammingCode(2);
             randomHammingCode.ErrorType = GetRandomTransmissionErrorType();
@@ -29,46 +28,64 @@ namespace backend.Controllers
             {
                 case TransmissionErrorType.OneBitFlipped:
                     var resultOfFlip = FlipOneRandomBit(randomHammingCode.Code);
-                    randomHammingCode.TestCode = resultOfFlip.NewByte;
+                    randomHammingCode.ExerciseCode = resultOfFlip.NewByte;
                     randomHammingCode.FlippedBit = resultOfFlip.FlippedBit;
                     break;
                 case TransmissionErrorType.TwoBitsFlipped:
-                    randomHammingCode.TestCode = FlipTwoRandomBits(randomHammingCode.Code);
+                    randomHammingCode.ExerciseCode = FlipTwoRandomBits(randomHammingCode.Code);
                     break;
             }
-            randomHammingCode.TestCodeCharArray = CodeToCharArray(randomHammingCode.TestCode);
-            return new OkObjectResult(randomHammingCode);
+            var hammingCodeExercise = new HammingCodeExercise(randomHammingCode.Id, randomHammingCode.ExerciseCode);
+            try
+            {
+                await _db.AddAsync(randomHammingCode);
+                return new OkObjectResult(hammingCodeExercise);
+            }
+            catch (Exception e)
+            {
+                _logger.LogCritical($"Unable to write to database {e}");
+                throw;
+            }
         }
 
         [HttpPost]
-        public IActionResult Submit(Attempt attempt)
+        public async Task<IActionResult> Submit(Attempt attempt)
         {
             if (ModelState.IsValid)
             {
-                var matchedCode = OutstandingCodes.Where(c => c.Id.ToString() == attempt.TestId).FirstOrDefault();
-                var attepmtResponse = new AttemptResponse();
+                var savedCodes = await _db.HammingCodes.ToListAsync();
+                var matchedCode = savedCodes.Where(c => c.Id == attempt.TestId).FirstOrDefault();
+                var attemptResponse = new AttemptResponse();
                 if (matchedCode is null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    if (matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true)
+                    if ((matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true) ||
+                        (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErorsSelected == true) ||
+                        (matchedCode.ErrorType == TransmissionErrorType.OneBitFlipped && matchedCode.FlippedBit == attempt.BitSelected))
                     {
-                        return Ok("Correct");
+                        attemptResponse.Correct = true;
                     }
-                    if (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErorsSelected == true)
-                    {
-                        return Ok("Correct");
-                    }
-                    if (matchedCode.ErrorType == TransmissionErrorType.OneBitFlipped && matchedCode.FlippedBit == attempt.BitSelected)
-                    {
-                        return Ok("Correct");
-                    }
+
                     else
                     {
-                        return Ok("Incorrect");
+                        attemptResponse.Correct = false;
+                        if (matchedCode.ErrorType == TransmissionErrorType.NoError)
+                        {
+                            attemptResponse.NoErrors = true;
+                        }
+                        else if (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped)
+                        {
+                            attemptResponse.TwoErrors = true;
+                        }
+                        else
+                        {
+                            attemptResponse.FlippedBit = matchedCode.FlippedBit;
+                        }
                     }
+                    return new OkObjectResult(attemptResponse);
                 }
             }
             return BadRequest(new ValidationProblemDetails(ModelState));

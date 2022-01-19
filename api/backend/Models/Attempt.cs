@@ -6,7 +6,7 @@ namespace backend.Models
     public class Attempt
     {
         [Required]
-        public string? TestId { get; set; }
+        public int TestId { get; set; }
         [Range(0, 63)]
         public int BitSelected { get; set; }
         public bool NoErrorsSelected { get; set; }

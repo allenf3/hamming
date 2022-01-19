@@ -25,6 +25,10 @@ namespace backend
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "backend", Version = "v1" });
             });
+            services.AddDbContext<AppDbContext>(b =>
+            {
+                b.UseSqlServer(Configuration.GetConnectionString("SqlDbConnection"));
+            }, ServiceLifetime.Transient);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
