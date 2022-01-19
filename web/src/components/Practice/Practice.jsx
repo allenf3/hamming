@@ -32,7 +32,7 @@ const Practice = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`);
-        setCode(data.TestCodeCharArray);
+        setCode(data.testCodeCharArray);
         setTestId(data.Id);
       } catch (err) {
         setError(err);

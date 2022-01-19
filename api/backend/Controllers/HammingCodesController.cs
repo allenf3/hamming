@@ -17,9 +17,11 @@ namespace backend.Controllers
     [ApiController]
     public class HammingCodesController : ControllerBase
     {
+        public List<HammingCode> OutstandingCodes = new();
+
         // GET: api/HammingCodes
         [HttpGet]
-        public string Get()
+        public IActionResult Get()
         {
             var randomHammingCode = GenerateHammingCode(2);
             randomHammingCode.ErrorType = GetRandomTransmissionErrorType();
@@ -35,8 +37,41 @@ namespace backend.Controllers
                     break;
             }
             randomHammingCode.TestCodeCharArray = CodeToCharArray(randomHammingCode.TestCode);
-            string json = JsonConvert.SerializeObject(randomHammingCode);
-            return json;
+            return new OkObjectResult(randomHammingCode);
+        }
+
+        [HttpPost]
+        public IActionResult Submit(Attempt attempt)
+        {
+            if (ModelState.IsValid)
+            {
+                var matchedCode = OutstandingCodes.Where(c => c.Id.ToString() == attempt.TestId).FirstOrDefault();
+                var attepmtResponse = new AttemptResponse();
+                if (matchedCode is null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    if (matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true)
+                    {
+                        return Ok("Correct");
+                    }
+                    if (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErorsSelected == true)
+                    {
+                        return Ok("Correct");
+                    }
+                    if (matchedCode.ErrorType == TransmissionErrorType.OneBitFlipped && matchedCode.FlippedBit == attempt.BitSelected)
+                    {
+                        return Ok("Correct");
+                    }
+                    else
+                    {
+                        return Ok("Incorrect");
+                    }
+                }
+            }
+            return BadRequest(new ValidationProblemDetails(ModelState));
         }
     }
 }
