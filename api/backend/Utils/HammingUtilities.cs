@@ -2,7 +2,7 @@ using System;
 using System.Text;
 using backend.Models;
 
-namespace backend
+namespace backend.Utils
 {
     public static class HammingUtilities
     {

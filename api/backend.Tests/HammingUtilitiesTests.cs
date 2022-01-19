@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using backend.Models;
 using Xunit;
-using static backend.HammingUtilities;
+using static backend.Utils.HammingUtilities;
 
 
 namespace backend.Tests
