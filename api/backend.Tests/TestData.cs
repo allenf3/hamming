@@ -12,7 +12,7 @@ namespace backend.Tests
     {
         public static readonly HammingCode NO_ERROR_HC = new HammingCode()
         {
-            Id = 5,
+            Id = 1,
             Code = new Byte[] { (byte)43, (byte)178 },
             ExerciseCode = new Byte[] { (byte)43, (byte)178 },
             ErrorType = HammingUtilities.TransmissionErrorType.NoError
@@ -20,7 +20,7 @@ namespace backend.Tests
 
         public static readonly HammingCode ONE_BIT_FLIPPED_HC = new HammingCode()
         {
-            Id = 5,
+            Id = 2,
             Code = new Byte[] { (byte)43, (byte)178 },
             ExerciseCode = new Byte[] { (byte)172, (byte)95 },
             ErrorType = HammingUtilities.TransmissionErrorType.OneBitFlipped,
@@ -29,7 +29,7 @@ namespace backend.Tests
 
         public static readonly HammingCode TWO_ERRORS_HC = new HammingCode()
         {
-            Id = 5,
+            Id = 3,
             Code = new Byte[] { (byte)172, (byte)127 },
             ExerciseCode = new Byte[] { (byte)44, (byte)95 },
             ErrorType = HammingUtilities.TransmissionErrorType.TwoBitsFlipped

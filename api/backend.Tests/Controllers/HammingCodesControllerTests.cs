@@ -7,13 +7,13 @@ using Moq;
 using Microsoft.Extensions.Logging;
 using backend.Utils;
 using System.Threading.Tasks;
-
+using System.Linq;
 namespace backend.Tests.Controllers
 {
     public class HammingCodesControllerTest : IAsyncLifetime
     {
-        private HammingCodesController testHcController;
-        private AppDbContext db;
+        private HammingCodesController? testHcController;
+        private AppDbContext? db;
 
         public async Task InitializeAsync()
         {
@@ -23,31 +23,98 @@ namespace backend.Tests.Controllers
 
         public async Task DisposeAsync()
         {
-            await db.DisposeAsync();
+            if (db is not null)
+            {
+                await db.DisposeAsync();
+            }
         }
 
         public class GetHammingCode : HammingCodesControllerTest
         {
             [Fact]
-            public async void Get_ReturnsSuccess()
+            public async void Get_AddsHammingCodeToDb()
             {
-                var response = await testHcController.Get();
-                Assert.NotNull(response);
-                // Assert.Equal("200", response!.Status.ToString());
+                var getResponse = (OkObjectResult)await testHcController!.Get();
+                Assert.Equal(200, getResponse.StatusCode);
+                var hammingCodeExerciseFromGet = getResponse.Value is not null ? (HammingCodeExercise)getResponse.Value : null;
+                var hammingCodeExerciseFromGetId = hammingCodeExerciseFromGet?.Id;
+                Assert.NotEqual(0, hammingCodeExerciseFromGetId);
+                if (db is not null)
+                {
+                    var matchingHammingCodeFromDatabase = db.HammingCodes.FirstOrDefault(code => code.Id == hammingCodeExerciseFromGetId);
+                    Assert.NotNull(matchingHammingCodeFromDatabase);
+                }
             }
 
             [Fact]
-            public async void Post_ReturnsSuccess()
+            public async void CorrectPost_ReturnsCorrectAttemptResponse()
             {
-                var postResponse = await testHcController.Submit(new Attempt
+                var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
                 {
-                    TestId = 5,
-                    BitSelected = 2,
-                    NoErrorsSelected = false,
+                    TestId = 1,
+                    NoErrorsSelected = true
+                });
+                Assert.Equal(200, postResponse.StatusCode);
+                var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(true, attemptResponse?.Correct);
+            }
+
+            [Fact]
+            public async void IncorrectPost_ReturnsIncorrectAttemptResponse()
+            {
+                var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
+                {
+                    TestId = 1,
+                    TwoErorsSelected = true
+                });
+                Assert.Equal(200, postResponse.StatusCode);
+                var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(false, attemptResponse?.Correct);
+            }
+
+            [Fact]
+            public async void SelectedBitPost_RespondsCorrectly()
+            {
+                var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
+                {
+                    TestId = 2,
+                    BitSelected = 10
+                });
+                Assert.Equal(200, postResponse.StatusCode);
+                var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(true, attemptResponse?.Correct);
+
+                postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
+                {
+                    TestId = 2,
+                    BitSelected = 3
+                });
+                Assert.Equal(200, postResponse?.StatusCode);
+                attemptResponse = postResponse?.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(false, attemptResponse?.Correct);
+                Assert.Equal(10, attemptResponse?.FlippedBit);
+            }
+
+            [Fact]
+            public async void TwoErrorsPost_RespondsCorrectly()
+            {
+                var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
+                {
+                    TestId = 3,
+                    TwoErorsSelected = true
+                });
+                Assert.Equal(200, postResponse.StatusCode);
+                var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(true, attemptResponse?.Correct);
+
+                postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
+                {
+                    TestId = 3,
                     TwoErorsSelected = false
                 });
-                Assert.NotNull(postResponse);
-                // Assert.Equal("200", postResponse!.Status.ToString());
+                Assert.Equal(200, postResponse.StatusCode);
+                attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
+                Assert.Equal(false, attemptResponse?.Correct);
             }
         }
     }

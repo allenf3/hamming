@@ -35,10 +35,11 @@ namespace backend.Controllers
                     randomHammingCode.ExerciseCode = FlipTwoRandomBits(randomHammingCode.Code);
                     break;
             }
-            var hammingCodeExercise = new HammingCodeExercise(randomHammingCode.Id, randomHammingCode.ExerciseCode);
             try
             {
                 await _db.AddAsync(randomHammingCode);
+                await _db.SaveChangesAsync();
+                var hammingCodeExercise = new HammingCodeExercise(randomHammingCode.Id, randomHammingCode.ExerciseCode);
                 return new OkObjectResult(hammingCodeExercise);
             }
             catch (Exception e)

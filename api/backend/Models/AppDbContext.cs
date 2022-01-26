@@ -9,12 +9,5 @@ namespace backend.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public virtual DbSet<HammingCode> HammingCodes { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<HammingCode>()
-                .HasIndex(e => e.Id)
-                .IsUnique();
-        }
     }
 }
