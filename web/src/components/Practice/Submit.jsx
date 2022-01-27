@@ -1,13 +1,14 @@
+/* eslint-disable no-console */
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
 function Submit({
-  anySelected, bitSelected, noErrorsSelected, twoErrorsSelected, testId,
+  anySelected, bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId,
 }) {
   const [responseResult, setResponseResult] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
 
   if (error) {
     return (
@@ -15,22 +16,40 @@ function Submit({
     );
   }
 
-  if (responseResult) {
+  if (responseResult.correct) {
     return (
-      <div>{ responseResult.data }</div>
+      <div>Correct!</div>
     );
+  }
+
+  if (!responseResult.correct) {
+    if (responseResult.flippedBit) {
+      return (
+        <div>{`Incorrect. In this case, bit ${responseResult.flippedBit} was flipped.`}</div>
+      );
+    }
+    if (responseResult.noErrors) {
+      return (
+        <div>Incorrect. In this case, there were no errors.</div>
+      );
+    }
+    if (responseResult.twoErrors) {
+      return (
+        <div>Incorrect. In this case, there were two errors.</div>
+      );
+    }
   }
 
   const handleSubmit = async () => {
     const attempt = {
-      bitSelected, noErrorsSelected, twoErrorsSelected, testId,
+      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId,
     };
     if (anySelected) {
       try {
         await axios.post(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`, attempt,
           { headers: { 'Content-Type': 'application/json' } })
           .then((result) => {
-            setResponseResult(result);
+            setResponseResult(result.data);
           });
       } catch (err) {
         setError(err);
@@ -55,7 +74,7 @@ Submit.defaultProps = {
   bitSelected: null,
   noErrorsSelected: false,
   twoErrorsSelected: false,
-  testId: null,
+  exerciseId: null,
 };
 
 Submit.propTypes = {
@@ -63,7 +82,7 @@ Submit.propTypes = {
   bitSelected: PropTypes.number,
   noErrorsSelected: PropTypes.bool,
   twoErrorsSelected: PropTypes.bool,
-  testId: PropTypes.string,
+  exerciseId: PropTypes.number,
 };
 
 export default Submit;

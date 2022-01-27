@@ -55,16 +55,16 @@ namespace backend.Controllers
             if (ModelState.IsValid)
             {
                 var savedCodes = await _db.HammingCodes.ToListAsync();
-                var matchedCode = savedCodes.Where(c => c.Id == attempt.TestId).FirstOrDefault();
-                var attemptResponse = new AttemptResponse();
+                var matchedCode = savedCodes.Where(c => c.Id == attempt.ExerciseId).FirstOrDefault();
                 if (matchedCode is null)
                 {
                     return NotFound();
                 }
                 else
                 {
+                    var attemptResponse = new AttemptResponse();
                     if ((matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true) ||
-                        (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErorsSelected == true) ||
+                        (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErrorsSelected == true) ||
                         (matchedCode.ErrorType == TransmissionErrorType.OneBitFlipped && matchedCode.FlippedBit == attempt.BitSelected))
                     {
                         attemptResponse.Correct = true;

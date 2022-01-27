@@ -51,7 +51,7 @@ namespace backend.Tests.Controllers
             {
                 var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
                 {
-                    TestId = 1,
+                    ExerciseId = 1,
                     NoErrorsSelected = true
                 });
                 Assert.Equal(200, postResponse.StatusCode);
@@ -64,8 +64,8 @@ namespace backend.Tests.Controllers
             {
                 var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
                 {
-                    TestId = 1,
-                    TwoErorsSelected = true
+                    ExerciseId = 1,
+                    TwoErrorsSelected = true
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
@@ -77,7 +77,7 @@ namespace backend.Tests.Controllers
             {
                 var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
                 {
-                    TestId = 2,
+                    ExerciseId = 2,
                     BitSelected = 10
                 });
                 Assert.Equal(200, postResponse.StatusCode);
@@ -86,7 +86,7 @@ namespace backend.Tests.Controllers
 
                 postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
                 {
-                    TestId = 2,
+                    ExerciseId = 2,
                     BitSelected = 3
                 });
                 Assert.Equal(200, postResponse?.StatusCode);
@@ -100,8 +100,8 @@ namespace backend.Tests.Controllers
             {
                 var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
                 {
-                    TestId = 3,
-                    TwoErorsSelected = true
+                    ExerciseId = 3,
+                    TwoErrorsSelected = true
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
@@ -109,8 +109,8 @@ namespace backend.Tests.Controllers
 
                 postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
                 {
-                    TestId = 3,
-                    TwoErorsSelected = false
+                    ExerciseId = 3,
+                    TwoErrorsSelected = false
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
