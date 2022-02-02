@@ -62,17 +62,30 @@ namespace backend.Controllers
                 }
                 else
                 {
+                    var attemptToSave = new Attempt
+                    {
+                        AttemptId = attempt.AttemptId,
+                        ExerciseId = attempt.ExerciseId,
+                        BitSelected = attempt.BitSelected,
+                        NoErrorsSelected = attempt.NoErrorsSelected,
+                        TwoErrorsSelected = attempt.TwoErrorsSelected,
+                        User = attempt.User,
+                        SubmittedOn = DateTime.Now
+
+                    };
                     var attemptResponse = new AttemptResponse();
                     if ((matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true) ||
                         (matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped && attempt.TwoErrorsSelected == true) ||
                         (matchedCode.ErrorType == TransmissionErrorType.OneBitFlipped && matchedCode.FlippedBit == attempt.BitSelected))
                     {
                         attemptResponse.Correct = true;
+                        attemptToSave.Correct = true;
                     }
 
                     else
                     {
                         attemptResponse.Correct = false;
+                        attemptToSave.Correct = false;
                         if (matchedCode.ErrorType == TransmissionErrorType.NoError)
                         {
                             attemptResponse.NoErrors = true;
@@ -86,6 +99,10 @@ namespace backend.Controllers
                             attemptResponse.FlippedBit = matchedCode.FlippedBit;
                         }
                     }
+
+                    await _db.Attempts.AddAsync(attemptToSave);
+                    await _db.SaveChangesAsync();
+
                     return new OkObjectResult(attemptResponse);
                 }
             }
