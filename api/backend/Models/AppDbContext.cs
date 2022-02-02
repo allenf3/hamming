@@ -9,5 +9,6 @@ namespace backend.Models
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public virtual DbSet<HammingCode> HammingCodes { get; set; }
+        public virtual DbSet<Attempt> Attempts { get; set; }
     }
 }
