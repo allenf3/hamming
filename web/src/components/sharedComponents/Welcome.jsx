@@ -26,9 +26,13 @@ function Welcome() {
     );
   }
   return (
-    <Button className="standard" variant="contained" onClick={() => loginWithRedirect()}>
-      LogIn
-    </Button>
+    <>
+      <div style={{ margin: '10px' }}>
+        <Button className="standard" variant="contained" onClick={() => loginWithRedirect()}>
+          LogIn
+        </Button>
+      </div>
+    </>
   );
 }
 

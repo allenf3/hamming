@@ -49,7 +49,6 @@ function Submit({
     };
     if (anySelected) {
       try {
-        console.log(attempt);
         await axios.post(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`, attempt,
           { headers: { 'Content-Type': 'application/json' } })
           .then((result) => {
