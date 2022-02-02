@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, Box } from '@mui/material';
 import { ClassNames } from '@emotion/react';
-import LoginButton from './components/sharedComponents/LoginButton';
-import LogoutButton from './components/sharedComponents/LogoutButton';
+import Welcome from './components/sharedComponents/Welcome';
 import './Home.css';
 
 function Home() {
@@ -61,8 +60,7 @@ function Home() {
       <div className="container">
         <h1>Hamming Codes</h1>
         <div>
-          <LoginButton />
-          <LogoutButton />
+          <Welcome />
         </div>
       </div>
       <NavigationButtons />

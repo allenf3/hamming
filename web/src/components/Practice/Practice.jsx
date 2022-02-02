@@ -6,6 +6,7 @@ import HammingGrid from './HammingGrid/HammingGrid';
 import NoErrors from './NoErrors';
 import TwoErrors from './TwoErrors';
 import Submit from './Submit';
+import Welcome from '../sharedComponents/Welcome';
 
 const Practice = () => {
   const [code, setCode] = useState([]);
@@ -50,7 +51,10 @@ const Practice = () => {
 
   return (
     <div className="main">
-      <h1>Practice working with Hamming codes</h1>
+      <div>
+        <h1>Practice working with Hamming codes</h1>
+        <Welcome />
+      </div>
       <div className="container">
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleAnySelected} />
         <div className="right">
