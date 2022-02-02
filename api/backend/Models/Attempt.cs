@@ -11,5 +11,8 @@ namespace backend.Models
         public int? BitSelected { get; set; }
         public bool NoErrorsSelected { get; set; }
         public bool TwoErrorsSelected { get; set; }
+        public string Email { get; set; }
+        public DateTime SubmittedOn { get; set; }
+
     }
 }
