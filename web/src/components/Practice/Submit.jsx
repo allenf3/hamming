@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -9,6 +10,7 @@ function Submit({
 }) {
   const [responseResult, setResponseResult] = useState('');
   const [error, setError] = useState(null);
+  const { user, isAuthenticated } = useAuth0();
 
   if (error) {
     return (
@@ -41,11 +43,13 @@ function Submit({
   }
 
   const handleSubmit = async () => {
+    const userEmail = (isAuthenticated ? user.email : 'Anonymous');
     const attempt = {
-      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId,
+      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId, userEmail,
     };
     if (anySelected) {
       try {
+        console.log(attempt);
         await axios.post(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`, attempt,
           { headers: { 'Content-Type': 'application/json' } })
           .then((result) => {
