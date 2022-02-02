@@ -51,11 +51,11 @@ const Practice = () => {
 
   return (
     <div className="main">
-      <div>
+      <div className="container heading">
         <h1>Practice working with Hamming codes</h1>
         <Welcome />
       </div>
-      <div className="container">
+      <div className="container together">
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleAnySelected} />
         <div className="right">
           <NoErrors

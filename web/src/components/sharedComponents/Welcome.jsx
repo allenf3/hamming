@@ -10,16 +10,18 @@ function Welcome() {
   if (isAuthenticated) {
     return (
       <>
-        <span style={{ marginRight: '8px' }}>
-          {user.email}
-        </span>
-        <Button
-          className="standard"
-          variant="contained"
-          onClick={() => logout({ returnTo: window.location.origin })}
-        >
-          Log Out
-        </Button>
+        <div style={{ margin: '10px' }}>
+          <span style={{ marginRight: '8px' }}>
+            {user.email}
+          </span>
+          <Button
+            className="standard"
+            variant="outlined"
+            onClick={() => logout({ returnTo: window.location.origin })}
+          >
+            Log Out
+          </Button>
+        </div>
       </>
     );
   }
