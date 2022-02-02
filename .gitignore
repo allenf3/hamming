@@ -417,6 +417,7 @@ Temporary Items
 
 # Secrets
 appsettings.Development.json
+secrets.js
 
 # content below from: https://github.com/github/gitignore/blob/master/Global/Windows.gitignore
 # Windows thumbnail cache files

@@ -6,8 +6,17 @@
   display: flex;
 }
 
+.together {
+  width: 1000px;
+}
+
+.heading {
+  margin-bottom: 20px;
+  width: 935px;
+}
+
 .hammingGrid {
-  width: 600px;
+  width: 580px;
   height: 520px;
   display: flex;
   flex-direction: row;
@@ -26,7 +35,6 @@
 .right {
   display: flex;
   flex-direction: column;
-  float: right;
 }
 
 button.selected-hamming-bit {

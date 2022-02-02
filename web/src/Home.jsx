@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider, Box } from '@mui/material';
 import { ClassNames } from '@emotion/react';
+import Welcome from './components/sharedComponents/Welcome';
+import './Home.css';
 
 function Home() {
   const buttonTheme = createTheme({
@@ -54,10 +56,15 @@ function Home() {
   );
 
   return (
-    <div>
-      <h1>Hamming Codes</h1>
+    <>
+      <div className="container">
+        <h1>Hamming Codes</h1>
+        <div>
+          <Welcome />
+        </div>
+      </div>
       <NavigationButtons />
-    </div>
+    </>
 
   );
 }
