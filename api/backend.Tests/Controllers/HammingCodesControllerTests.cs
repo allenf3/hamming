@@ -124,12 +124,12 @@ namespace backend.Tests.Controllers
                 {
                     ExerciseId = 3,
                     TwoErrorsSelected = true,
-                    User = "john.doe@example.com"
+                    UserId = "john.doe@example.com"
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 if (db is not null)
                 {
-                    var attempt = db.Attempts.FirstOrDefault(attempt => attempt.User == "john.doe@example.com");
+                    var attempt = db.Attempts.FirstOrDefault(attempt => attempt.UserId == "john.doe@example.com");
                     Assert.NotNull(attempt);
                 }
             }

@@ -43,9 +43,9 @@ function Submit({
   }
 
   const handleSubmit = async () => {
-    const userEmail = (isAuthenticated ? user.email : 'Anonymous');
+    const userId = (isAuthenticated ? user.sub : null);
     const attempt = {
-      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId, userEmail,
+      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId, userId,
     };
     if (anySelected) {
       try {

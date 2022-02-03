@@ -14,9 +14,7 @@ namespace backend.Models
         public int? BitSelected { get; set; }
         public bool NoErrorsSelected { get; set; }
         public bool TwoErrorsSelected { get; set; }
-
-        [JsonPropertyName("UserEmail")]
-        public string User { get; set; }
+        public string UserId { get; set; }
         public bool Correct { get; set; }
         public DateTime SubmittedOn { get; set; }
 

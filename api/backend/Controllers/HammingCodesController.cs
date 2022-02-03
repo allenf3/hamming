@@ -69,7 +69,7 @@ namespace backend.Controllers
                         BitSelected = attempt.BitSelected,
                         NoErrorsSelected = attempt.NoErrorsSelected,
                         TwoErrorsSelected = attempt.TwoErrorsSelected,
-                        User = attempt.User,
+                        UserId = attempt.UserId,
                         SubmittedOn = DateTime.Now
 
                     };
