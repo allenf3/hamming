@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import React, { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 import Button from '@mui/material/Button';
 import PropTypes from 'prop-types';
 import axios from 'axios';
@@ -9,6 +10,7 @@ function Submit({
 }) {
   const [responseResult, setResponseResult] = useState('');
   const [error, setError] = useState(null);
+  const { user, isAuthenticated } = useAuth0();
 
   if (error) {
     return (
@@ -41,8 +43,9 @@ function Submit({
   }
 
   const handleSubmit = async () => {
+    const userId = (isAuthenticated ? user.sub : null);
     const attempt = {
-      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId,
+      bitSelected, noErrorsSelected, twoErrorsSelected, exerciseId, userId,
     };
     if (anySelected) {
       try {

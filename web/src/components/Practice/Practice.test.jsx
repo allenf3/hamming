@@ -6,7 +6,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Practice from './Practice';
 import shouldLinkToHome from '../../testUtilities/shouldLinkToHome';
 
-const testCodeValid = ['1', '0', '1', '1', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '1'];
+const testCodeValid = {
+  exerciseCodeCharacters: ['1', '0', '1', '1', '1', '0', '1', '1', '0', '0', '0', '1', '0', '0', '0', '1'],
+  id: 15,
+};
 
 const testSetup = () => {
   const mockApi = new MockAdapter(axios);

@@ -116,6 +116,23 @@ namespace backend.Tests.Controllers
                 attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
                 Assert.Equal(false, attemptResponse?.Correct);
             }
+
+            [Fact]
+            public async void AttemptWrittenToDatabase()
+            {
+                var postResponse = (OkObjectResult)await testHcController!.Submit(new Attempt
+                {
+                    ExerciseId = 3,
+                    TwoErrorsSelected = true,
+                    UserId = "john.doe@example.com"
+                });
+                Assert.Equal(200, postResponse.StatusCode);
+                if (db is not null)
+                {
+                    var attempt = db.Attempts.FirstOrDefault(attempt => attempt.UserId == "john.doe@example.com");
+                    Assert.NotNull(attempt);
+                }
+            }
         }
     }
 }

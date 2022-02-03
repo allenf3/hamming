@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using backend.Models;
 
@@ -11,9 +12,10 @@ using backend.Models;
 namespace HammingApi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220202220527_AddAttemptsTable")]
+    partial class AddAttemptsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,9 +34,6 @@ namespace HammingApi.Migrations
 
                     b.Property<int?>("BitSelected")
                         .HasColumnType("int");
-
-                    b.Property<bool>("Correct")
-                        .HasColumnType("bit");
 
                     b.Property<int>("ExerciseId")
                         .HasColumnType("int");
