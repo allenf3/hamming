@@ -1,0 +1,10 @@
+.submissionResult {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.submissionResultMessage {
+  margin-top: 20px;
+  width: 250px;
+}
