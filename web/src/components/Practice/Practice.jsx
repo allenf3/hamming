@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Practice.css';
+import PropTypes from 'prop-types';
 import HomeLink from '../sharedComponents/HomeLink';
 import HammingGrid from './HammingGrid/HammingGrid';
 import NoErrors from './NoErrors';
@@ -8,7 +9,7 @@ import TwoErrors from './TwoErrors';
 import Submit from './Submit';
 import Welcome from '../sharedComponents/Welcome';
 
-const Practice = () => {
+const Practice = ({ newExercise }) => {
   const [code, setCode] = useState([]);
   const [exerciseId, setExerciseId] = useState(null);
   const [error, setError] = useState(null);
@@ -72,12 +73,21 @@ const Practice = () => {
             noErrorsSelected={noErrorsSelected}
             twoErrorsSelected={twoErrorsSelected}
             exerciseId={exerciseId}
+            newExercise={newExercise}
           />
         </div>
       </div>
       <HomeLink />
     </div>
   );
+};
+
+Practice.defaultProps = {
+  newExercise: () => {},
+};
+
+Practice.propTypes = {
+  newExercise: PropTypes.func,
 };
 
 export default Practice;
