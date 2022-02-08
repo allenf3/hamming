@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { useAuth0 } from '@auth0/auth0-react';
-import Learn from './Learn';
+import Learn from './components/Learn/Learn';
 import Practice from './components/Practice/Practice';
-import Reports from './Reports';
+import Reports from './components/Reports/Reports';
 import Home from './Home';
 
 function App() {
