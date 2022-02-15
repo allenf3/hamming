@@ -21,7 +21,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-01-29-223T19:25:43.511Z',
+    submittedOn: '2022-01-29-T19:25:43.511Z',
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: false,
     userId: 'auth0|558',
-    submittedOn: '2022-01-15-223T19:28:43.299Z',
+    submittedOn: '2022-01-15-T19:28:43.299Z',
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-02-16-223T18:25:43.511Z',
+    submittedOn: '2022-02-16-T18:25:43.511Z',
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: false,
     userId: 'auth0|558',
-    submittedOn: '2022-01-17-223T18:25:43.511Z',
+    submittedOn: '2022-01-17-T18:25:43.511Z',
   },
   {
     id: 6,
@@ -69,7 +69,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: true,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-01-18-223T18:25:43.511Z',
+    submittedOn: '2022-01-18-T18:25:43.511Z',
   },
   {
     id: 7,
@@ -81,7 +81,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: false,
     userId: null,
-    submittedOn: '2022-01-20-223T19:28:43.299Z',
+    submittedOn: '2022-01-20-T19:28:43.299Z',
   },
   {
     id: 8,
@@ -93,7 +93,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: null,
-    submittedOn: '2022-01-21-223T18:25:43.511Z',
+    submittedOn: '2022-01-21-T18:25:43.511Z',
   },
   {
     id: 9,
@@ -105,7 +105,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: true,
     correct: true,
     userId: null,
-    submittedOn: '2022-01-22-223T18:25:43.511Z',
+    submittedOn: '2022-01-22-T18:25:43.511Z',
   },
   {
     id: 10,
@@ -117,7 +117,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: true,
     correct: true,
     userId: 'auth0|927Admin',
-    submittedOn: '2022-01-23-223T18:25:43.511Z',
+    submittedOn: '2022-01-23-T18:25:43.511Z',
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: true,
     correct: false,
     userId: 'auth0|927Admin',
-    submittedOn: '2022-01-24-223T19:28:43.299Z',
+    submittedOn: '2022-01-24-T19:28:43.299Z',
   },
   {
     id: 12,
@@ -141,7 +141,7 @@ const testAdminExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: 'auth0|927Admin',
-    submittedOn: '2022-01-25-223T18:25:43.511Z',
+    submittedOn: '2022-01-25-T18:25:43.511Z',
   },
 ];
 
@@ -156,7 +156,7 @@ const testUserExerciseResults = [
     actualTwoErrors: true,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-01-15-223T18:25:43.511Z',
+    submittedOn: '2022-01-15-T18:25:43.511Z',
   },
   {
     id: 2,
@@ -168,7 +168,7 @@ const testUserExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-01-29-223T19:25:43.511Z',
+    submittedOn: '2022-01-29-T19:25:43.511Z',
   },
   {
     id: 3,
@@ -180,7 +180,7 @@ const testUserExerciseResults = [
     actualTwoErrors: false,
     correct: false,
     userId: 'auth0|558',
-    submittedOn: '2022-01-15-223T19:28:43.299Z',
+    submittedOn: '2022-01-15-T19:28:43.299Z',
   },
   {
     id: 4,
@@ -192,7 +192,7 @@ const testUserExerciseResults = [
     actualTwoErrors: false,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-02-16-223T18:25:43.511Z',
+    submittedOn: '2022-02-16-T18:25:43.511Z',
   },
   {
     id: 5,
@@ -204,7 +204,7 @@ const testUserExerciseResults = [
     actualTwoErrors: false,
     correct: false,
     userId: 'auth0|558',
-    submittedOn: '2022-01-17-223T18:25:43.511Z',
+    submittedOn: '2022-01-17-T18:25:43.511Z',
   },
   {
     id: 6,
@@ -216,7 +216,7 @@ const testUserExerciseResults = [
     actualTwoErrors: true,
     correct: true,
     userId: 'auth0|558',
-    submittedOn: '2022-01-18-223T18:25:43.511Z',
+    submittedOn: '2022-01-18-T18:25:43.511Z',
   },
 ];
 

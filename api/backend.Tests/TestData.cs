@@ -37,6 +37,97 @@ namespace backend.Tests
 
         public static readonly List<HammingCode> TEST_HAMMING_CODES = new() { NO_ERROR_HC, ONE_BIT_FLIPPED_HC, TWO_ERRORS_HC };
 
+        public static readonly string TEST_USER = "auth0|2345";
+        public static readonly string TEST_USER_ADMIN = "auth0|8855";
+
+        public static readonly List<Attempt> TEST_ATTEMPTS = new()
+        {
+            new Attempt
+            {
+                AttemptId = 1,
+                ExerciseId = 7,
+                UserId = "auth0|2345",
+                BitSelected = null,
+                ActualBit = null,
+                NoErrorsSelected = false,
+                ActualNoErrors = false,
+                TwoErrorsSelected = true,
+                ActualTwoErrors = true,
+                Correct = true,
+                SubmittedOn = new DateTime(2022, 1, 15, 18, 25, 43, 511),
+            },
+            new Attempt
+            {
+                AttemptId = 2,
+                ExerciseId = 12,
+                UserId = "auth0|2345",
+                BitSelected = null,
+                ActualBit = 3,
+                NoErrorsSelected = true,
+                ActualNoErrors = false,
+                TwoErrorsSelected = false,
+                ActualTwoErrors = false,
+                Correct = false,
+                SubmittedOn = new DateTime(2022, 1, 15, 17, 01, 23, 308),
+            },
+            new Attempt
+            {
+                AttemptId = 3,
+                ExerciseId = 15,
+                UserId = "auth0|2345",
+                BitSelected = 7,
+                ActualBit = 7,
+                NoErrorsSelected = false,
+                ActualNoErrors = false,
+                TwoErrorsSelected = false,
+                ActualTwoErrors = false,
+                Correct = true,
+                SubmittedOn = new DateTime(2022, 1, 16, 4, 25, 43, 255),
+            },
+            new Attempt
+            {
+                AttemptId = 4,
+                ExerciseId = 3,
+                UserId = null,
+                BitSelected = null,
+                ActualBit = null,
+                NoErrorsSelected = false,
+                ActualNoErrors = false,
+                TwoErrorsSelected = true,
+                ActualTwoErrors = true,
+                Correct = true,
+                SubmittedOn = new DateTime(2022, 1, 15, 19, 25, 43, 511),
+            },
+            new Attempt
+            {
+                AttemptId = 5,
+                ExerciseId = 28,
+                UserId = null,
+                BitSelected = 5,
+                ActualBit = null,
+                NoErrorsSelected = false,
+                ActualNoErrors = false,
+                TwoErrorsSelected = false,
+                ActualTwoErrors = true,
+                Correct = false,
+                SubmittedOn = new DateTime(2022, 1, 15, 19, 25, 43, 511),
+            },
+            new Attempt
+            {
+                AttemptId = 6,
+                ExerciseId = 56,
+                UserId = "auth0|8855",
+                BitSelected = null,
+                ActualBit = null,
+                NoErrorsSelected = false,
+                ActualNoErrors = false,
+                TwoErrorsSelected = true,
+                ActualTwoErrors = true,
+                Correct = true,
+                SubmittedOn = new DateTime(2021, 8, 15, 19, 25, 43, 511),
+            }
+        };
+
         public static async Task<AppDbContext> GetTestDbContext()
         {
             var db = new AppDbContext(CreateOptions());
@@ -44,6 +135,7 @@ namespace backend.Tests
             await db.Database.EnsureCreatedAsync();
 
             await db.HammingCodes.AddRangeAsync(TEST_HAMMING_CODES);
+            await db.Attempts.AddRangeAsync(TEST_ATTEMPTS);
 
             await db.SaveChangesAsync();
 
