@@ -67,11 +67,13 @@ namespace backend.Controllers
                         AttemptId = attempt.AttemptId,
                         ExerciseId = attempt.ExerciseId,
                         BitSelected = attempt.BitSelected,
+                        ActualBit = matchedCode.FlippedBit,
                         NoErrorsSelected = attempt.NoErrorsSelected,
+                        ActualNoErrors = matchedCode.ErrorType == TransmissionErrorType.NoError ? true : false,
                         TwoErrorsSelected = attempt.TwoErrorsSelected,
+                        ActualTwoErrors = matchedCode.ErrorType == TransmissionErrorType.TwoBitsFlipped ? true : false,
                         UserId = attempt.UserId,
                         SubmittedOn = DateTime.Now
-
                     };
                     var attemptResponse = new AttemptResponse();
                     if ((matchedCode.ErrorType == TransmissionErrorType.NoError && attempt.NoErrorsSelected == true) ||
