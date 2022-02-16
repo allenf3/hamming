@@ -19,6 +19,21 @@ public class AttemptsController : ControllerBase
         _logger = logger;
     }
 
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        try
+        {
+            var allAttempts = await _db.Attempts.ToListAsync();
+            return allAttempts.Count > 0 ? new OkObjectResult(allAttempts) : new NotFoundResult();
+        }
+        catch (Exception e)
+        {
+            _logger.LogCritical($"Sql read error. There may be a problem with the database connection. ${e.Message}");
+            throw;
+        }
+    }
+
     [HttpGet("{userId}")]
     public async Task<IActionResult> GetByUser(string userId)
     {
@@ -29,7 +44,7 @@ public class AttemptsController : ControllerBase
         }
         catch (Exception e)
         {
-            _logger.LogCritical($"SQL Read error. There may be a problem with the database connection. ${e.Message}");
+            _logger.LogCritical($"SQL read error. There may be a problem with the database connection. ${e.Message}");
             throw;
         }
     }

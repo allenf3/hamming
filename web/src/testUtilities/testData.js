@@ -1,6 +1,6 @@
 const testAdminExerciseResults = [
   {
-    id: 1,
+    attemptId: 1,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -12,7 +12,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-15-223T18:25:43.511Z',
   },
   {
-    id: 2,
+    attemptId: 2,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: true,
@@ -24,7 +24,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-29-T19:25:43.511Z',
   },
   {
-    id: 3,
+    attemptId: 3,
     bitSelected: 5,
     actualBit: null,
     noErrorsSelected: false,
@@ -36,7 +36,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-15-T19:28:43.299Z',
   },
   {
-    id: 4,
+    attemptId: 4,
     bitSelected: 12,
     actualBit: 12,
     noErrorsSelected: false,
@@ -48,7 +48,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-02-16-T18:25:43.511Z',
   },
   {
-    id: 5,
+    attemptId: 5,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -60,7 +60,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-17-T18:25:43.511Z',
   },
   {
-    id: 6,
+    attemptId: 6,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -72,7 +72,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-18-T18:25:43.511Z',
   },
   {
-    id: 7,
+    attemptId: 7,
     bitSelected: 5,
     actualBit: null,
     noErrorsSelected: false,
@@ -84,7 +84,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-20-T19:28:43.299Z',
   },
   {
-    id: 8,
+    attemptId: 8,
     bitSelected: 12,
     actualBit: 12,
     noErrorsSelected: false,
@@ -96,7 +96,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-21-T18:25:43.511Z',
   },
   {
-    id: 9,
+    attemptId: 9,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -108,7 +108,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-22-T18:25:43.511Z',
   },
   {
-    id: 10,
+    attemptId: 10,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -120,7 +120,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-23-T18:25:43.511Z',
   },
   {
-    id: 11,
+    attemptId: 11,
     bitSelected: 15,
     actualBit: null,
     noErrorsSelected: false,
@@ -132,7 +132,7 @@ const testAdminExerciseResults = [
     submittedOn: '2022-01-24-T19:28:43.299Z',
   },
   {
-    id: 12,
+    attemptId: 12,
     bitSelected: 6,
     actualBit: 6,
     noErrorsSelected: false,
@@ -147,7 +147,7 @@ const testAdminExerciseResults = [
 
 const testUserExerciseResults = [
   {
-    id: 1,
+    attemptId: 1,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -155,11 +155,11 @@ const testUserExerciseResults = [
     twoErrorsSelected: true,
     actualTwoErrors: true,
     correct: true,
-    userId: 'auth0|558',
+    userattemptId: 'auth0|558',
     submittedOn: '2022-01-15-T18:25:43.511Z',
   },
   {
-    id: 2,
+    attemptId: 2,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: true,
@@ -171,7 +171,7 @@ const testUserExerciseResults = [
     submittedOn: '2022-01-29-T19:25:43.511Z',
   },
   {
-    id: 3,
+    attemptId: 3,
     bitSelected: 5,
     actualBit: null,
     noErrorsSelected: false,
@@ -183,7 +183,7 @@ const testUserExerciseResults = [
     submittedOn: '2022-01-15-T19:28:43.299Z',
   },
   {
-    id: 4,
+    attemptId: 4,
     bitSelected: 12,
     actualBit: 12,
     noErrorsSelected: false,
@@ -195,7 +195,7 @@ const testUserExerciseResults = [
     submittedOn: '2022-02-16-T18:25:43.511Z',
   },
   {
-    id: 5,
+    attemptId: 5,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -207,7 +207,7 @@ const testUserExerciseResults = [
     submittedOn: '2022-01-17-T18:25:43.511Z',
   },
   {
-    id: 6,
+    attemptId: 6,
     bitSelected: null,
     actualBit: null,
     noErrorsSelected: false,
@@ -220,4 +220,4 @@ const testUserExerciseResults = [
   },
 ];
 
-export { testUserExerciseResults, testAdminExerciseResults as default };
+export { testUserExerciseResults, testAdminExerciseResults };

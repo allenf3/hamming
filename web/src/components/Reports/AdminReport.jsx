@@ -1,7 +1,6 @@
 /* eslint-disable no-nested-ternary */
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,47 +8,80 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
-import './UserReport.css';
+import { Tab, Box, Tabs } from '@mui/material';
+import UserReport from './UserReport';
 
-function UserReport() {
-  const [myResults, setMyResults] = useState([]);
+function AdminReport() {
+  const [allResults, setAllResults] = useState([]);
   const [error, setError] = useState(null);
-  const { user } = useAuth0();
-  const userId = user.sub;
-  const totalAttempts = myResults.length;
-  const correctAnswers = myResults.filter((r) => r.correct === true).length;
-  const incorrectAnswers = myResults.filter((r) => r.correct === false).length;
+  const [value, setValue] = useState(0);
+  const [loadingState, setLoadingState] = useState(true);
+  const totalAttempts = allResults.length;
+  const correctAnswers = allResults.filter((r) => r.correct).length;
+  const incorrectAnswers = allResults.filter((r) => !r.correct).length;
+
+  const handleChange = () => {
+    if (value === 0) {
+      setValue(1);
+    } else {
+      setValue(0);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axios.get(`${process.env.REACT_APP_BASE_API}/api/Attempts/${userId}`);
-        setMyResults(data);
+        const { data } = await axios.get(`${process.env.REACT_APP_BASE_API}/api/Attempts`);
+        setAllResults(data);
       } catch (err) {
         setError(err);
       }
+      setLoadingState(false);
     };
 
     fetchData();
   }, []);
 
+  if (loadingState) {
+    return (
+      <div>Loading...</div>
+    );
+  }
+
   if (error) {
     return (
-      error.message === 'Request failed with status code 404'
-        ? <div>No attempts found. Try out some Hamming code exercices!</div>
-        : <div>There was an error retrieving your results</div>
+      <div>There was a problem fetching all the results</div>
     );
   }
 
   return (
-    <>
-      <div>
-        <h2>Your Personal Statistics</h2>
+    <Box>
+      <Box>
+        <Tabs value={value} onChange={handleChange}>
+          <Tab
+            label="My Results"
+            id="admin-report-tab-0"
+          />
+          <Tab
+            label="All Results"
+            id="admin-report-tab-1"
+          />
+        </Tabs>
+      </Box>
+      <div hidden={value !== 0}>
+        {value === 0 && (
+        <Box>
+          <UserReport />
+        </Box>
+        )}
+      </div>
+      <div hidden={value !== 1}>
+        <h2>All Statistics</h2>
         <TableContainer className="statistics" component={Paper}>
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell>Attempts</TableCell>
+                <TableCell>Total Attempts</TableCell>
                 <TableCell>{totalAttempts}</TableCell>
               </TableRow>
               <TableRow>
@@ -61,7 +93,7 @@ function UserReport() {
                 <TableCell>{incorrectAnswers}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell>Percent Correct</TableCell>
+                <TableCell>Correct Percentage</TableCell>
                 <TableCell>
                   {totalAttempts > 0 ? ((correctAnswers / totalAttempts) * 100).toFixed(1) : 'Zero'}
                   %
@@ -70,27 +102,31 @@ function UserReport() {
             </TableBody>
           </Table>
         </TableContainer>
-      </div>
-      <div>
-        <h3>Attempt History</h3>
+        <h3>All History</h3>
         <TableContainer className="history" component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>Attempt</TableCell>
-                <TableCell>Your Answer</TableCell>
+                <TableCell>User</TableCell>
+                <TableCell>Answer Given</TableCell>
                 <TableCell>Correct Answer</TableCell>
                 <TableCell>Result</TableCell>
                 <TableCell>Submitted on</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {myResults.map((row, index) => (
+              {allResults.map((row, index) => (
                 <TableRow
                   key={row.attemptId}
                 >
                   <TableCell>
                     {index + 1}
+                  </TableCell>
+                  <TableCell>
+                    {row.userId
+                      ? String(row.userId).slice(6)
+                      : 'Anonymous' }
                   </TableCell>
                   <TableCell>
                     { row.bitSelected
@@ -120,8 +156,8 @@ function UserReport() {
           </Table>
         </TableContainer>
       </div>
-    </>
+    </Box>
   );
 }
 
-export default UserReport;
+export default AdminReport;
