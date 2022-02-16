@@ -42,11 +42,11 @@ test('user report page renders correctly', async () => {
   testSetupAndRender();
   expect(await screen.findByText('Your Personal Statistics'));
   expect(await screen.findByText('Attempts'));
-  expect(await screen.findByText('6'));
+  expect(await screen.findAllByText('6')).toHaveLength(2);
   expect(await screen.findByText('Correct Answers'));
-  expect(await screen.findByText('4'));
+  expect(await screen.findAllByText('4')).toHaveLength(2);
   expect(await screen.findByText('Incorrect Answers'));
-  expect(await screen.findByText('2'));
+  expect(await screen.findAllByText('2')).toHaveLength(2);
   expect(await screen.findByText('Percent Correct'));
   expect(await screen.findByText('66.7%'));
   expect(await screen.findByText('Attempt History')).toBeInTheDocument();

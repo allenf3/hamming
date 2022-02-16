@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -92,17 +93,18 @@ function UserReport() {
                     {index + 1}
                   </TableCell>
                   <TableCell>
-                    {row.bitSelected
+                    { row.bitSelected
                       ? row.bitSelected
-                      : 'Other' }
-                    {/* // : row.noErrorsSelected
-                    //   ? 'No Errors'
-                    //   : 'Two Errors' */}
+                      : row.noErrorsSelected
+                        ? 'No Errors'
+                        : 'Two Errors' }
                   </TableCell>
                   <TableCell>
-                    {row.actualBit
+                    { row.actualBit
                       ? row.actualBit
-                      : 'Other' }
+                      : row.actualNoErrors
+                        ? 'No Errors'
+                        : 'Two Errors' }
                   </TableCell>
                   <TableCell>
                     {row.correct
