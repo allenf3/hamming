@@ -52,6 +52,7 @@ const Practice = ({ newExercise }) => {
 
   return (
     <div className="main">
+      <HomeLink />
       <div className="container heading">
         <h1>Practice working with Hamming codes</h1>
         <Welcome />
@@ -77,7 +78,6 @@ const Practice = ({ newExercise }) => {
           />
         </div>
       </div>
-      <HomeLink />
     </div>
   );
 };
