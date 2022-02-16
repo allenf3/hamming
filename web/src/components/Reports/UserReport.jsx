@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -9,7 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import TableHead from '@mui/material/TableHead';
 import Paper from '@mui/material/Paper';
-import './UserReport.css';
 
 function UserReport() {
   const [myResults, setMyResults] = useState([]);
@@ -45,7 +43,7 @@ function UserReport() {
     <>
       <div>
         <h2>Your Personal Statistics</h2>
-        <TableContainer className="statistics" component={Paper}>
+        <TableContainer style={{ width: '250px' }} component={Paper}>
           <Table>
             <TableBody>
               <TableRow>
@@ -73,7 +71,7 @@ function UserReport() {
       </div>
       <div>
         <h3>Attempt History</h3>
-        <TableContainer className="history" component={Paper}>
+        <TableContainer style={{ width: '800px' }} component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -94,17 +92,15 @@ function UserReport() {
                   </TableCell>
                   <TableCell>
                     { row.bitSelected
-                      ? row.bitSelected
-                      : row.noErrorsSelected
-                        ? 'No Errors'
-                        : 'Two Errors' }
+                      || row.noErrorsSelected
+                      ? 'No Errors'
+                      : 'Two Errors' }
                   </TableCell>
                   <TableCell>
                     { row.actualBit
-                      ? row.actualBit
-                      : row.actualNoErrors
-                        ? 'No Errors'
-                        : 'Two Errors' }
+                      || row.actualNoErrors
+                      ? 'No Errors'
+                      : 'Two Errors' }
                   </TableCell>
                   <TableCell>
                     {row.correct

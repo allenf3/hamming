@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
+import HomeLink from '../sharedComponents/HomeLink';
 import Welcome from '../sharedComponents/Welcome';
 import CustomReport from './CustomReport';
 import './Reports.css';
@@ -10,6 +10,7 @@ function Reports() {
 
   return (
     <div className="main">
+      <HomeLink />
       <div className="container heading">
         <h1>View Reports</h1>
         <Welcome />
@@ -17,7 +18,6 @@ function Reports() {
       <div className="report-area">
         {isAuthenticated ? <CustomReport /> : 'You must be logged in to view this page'}
       </div>
-      <Link to="/">Home</Link>
     </div>
   );
 }

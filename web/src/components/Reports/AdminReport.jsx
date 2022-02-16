@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from '@mui/material/Table';
@@ -77,7 +76,7 @@ function AdminReport() {
       </div>
       <div hidden={value !== 1}>
         <h2>All Statistics</h2>
-        <TableContainer className="statistics" component={Paper}>
+        <TableContainer style={{ width: '250px' }} component={Paper}>
           <Table>
             <TableBody>
               <TableRow>
@@ -103,7 +102,7 @@ function AdminReport() {
           </Table>
         </TableContainer>
         <h3>All History</h3>
-        <TableContainer className="history" component={Paper}>
+        <TableContainer style={{ width: '900px' }} component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -130,17 +129,15 @@ function AdminReport() {
                   </TableCell>
                   <TableCell>
                     { row.bitSelected
-                      ? row.bitSelected
-                      : row.noErrorsSelected
-                        ? 'No Errors'
-                        : 'Two Errors' }
+                      || row.noErrorsSelected
+                      ? 'No Errors'
+                      : 'Two Errors' }
                   </TableCell>
                   <TableCell>
                     { row.actualBit
-                      ? row.actualBit
-                      : row.actualNoErrors
-                        ? 'No Errors'
-                        : 'Two Errors' }
+                      || row.actualNoErrors
+                      ? 'No Errors'
+                      : 'Two Errors' }
                   </TableCell>
                   <TableCell>
                     {row.correct
