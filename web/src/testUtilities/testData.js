@@ -220,4 +220,4 @@ const testUserExerciseResults = [
   },
 ];
 
-export { testUserExerciseResults, testAdminExerciseResults as default };
+export { testUserExerciseResults, testAdminExerciseResults };
