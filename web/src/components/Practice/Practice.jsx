@@ -10,6 +10,7 @@ import Submit from './Submit';
 import Welcome from '../sharedComponents/Welcome';
 
 const Practice = ({ newExercise }) => {
+  const [loadingState, setLoadingState] = useState(true);
   const [code, setCode] = useState([]);
   const [exerciseId, setExerciseId] = useState(null);
   const [error, setError] = useState(null);
@@ -39,10 +40,17 @@ const Practice = ({ newExercise }) => {
       } catch (err) {
         setError(err);
       }
+      setLoadingState(false);
     };
 
     fetchData();
   }, []);
+
+  if (loadingState) {
+    return (
+      <div>Loading exercise...</div>
+    );
+  }
 
   if (error) {
     return (
