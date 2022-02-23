@@ -52,10 +52,10 @@ function Learn() {
       <h1>Learn about Hamming codes</h1>
       <div>
         <p>
-          Let&#39;s say we attend school from September to April and we want to report the number
-          of hours we spent studying each month. There are eight months from September to April,
-          so we can represent the month in question with three bits of data since there are eight
-          possible combinations of three bits:
+          Let&#39;s say we attend school from September to April. We want to send a digital message
+          to someone indicating the number of hours we spent studying in a month. There are
+          eight months from September to April, so we can represent the month in question
+          with three bits of data, since there are eight possible combinations of three bits:
         </p>
         <pre>000 = September,</pre>
         <pre>001 = October,</pre>
@@ -78,8 +78,8 @@ function Learn() {
         <pre>5 in decimal = 101 in binary</pre>
         <pre>and so on...</pre>
         <p>
-          So we inform the recipient that the first three bits of data we send will represent the
-          month, and the last 8 bits will represent the hours spent studying &#40;we don&#39;t
+          So we inform the recipient that the first three bits of the message we send will indicate
+          the month, and the last 8 bits will indicate the hours spent studying &#40;we don&#39;t
           plan to spend more than 255 hours studying in a month&#41;.
         </p>
         <p>
@@ -100,7 +100,8 @@ function Learn() {
           {' '}
           <i><b>detect</b></i>
           {' '}
-          two bits that were flipped during transmission. Following is an example of how this works.
+          two bits that were flipped during transmission. Following is an example of
+          how the code is created.
         </p>
         <p>
           The grid below represents the bits we are sending in an arrangement that makes it easier
@@ -112,7 +113,7 @@ function Learn() {
         <DisplayHammingGrid className="hamming-grid" gridInfo={indexBits} />
         <p>
           Each error-correcting bit &#34;counts&#34; a group of data bits and becomes a 1 if there
-          are an odd number of 1 bits and a 0 if there are an even number of 1 bits. Let&#39;s
+          is an odd number of 1 bits and a 0 if there are an even number of 1 bits. Let&#39;s
           replace the index values of the bits with the data we want to send. If we spent 73 hours
           studying in the month of December, we will need to send the code 01101001001, where 011
           represents the month of December and 01001001 is binary for 73. So
@@ -128,7 +129,7 @@ function Learn() {
       </div>
       <p>
         Bit 2 will be set by the bits directly underneath it and the bits in the last column.
-        There are two 1s, bit 2 is set to 0.
+        There are two 1s, so bit 2 is set to 0.
       </p>
       <DisplayHammingGrid className="hamming-grid" gridInfo={setBit2} />
       <p>
