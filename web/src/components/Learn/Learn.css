@@ -7,6 +7,10 @@ p {
   width: 650px;
 }
 
+.hammingLink {
+  margin-left: 50px;
+}
+
 pre {
   margin-left: 50px;
 }

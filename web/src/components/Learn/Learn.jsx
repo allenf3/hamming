@@ -156,7 +156,9 @@ function Learn() {
         <p>
           For further information, please see:
         </p>
-        <Link to={{ pathname: 'https://google.com' }}>Google</Link>
+        <a className="hammingLink" target="_blank" rel="noreferrer" href="https://youtu.be/X8jsijhllIA">Hamming Code Video</a>
+        <a className="hammingLink" target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Richard_Hamming">Richard Hamming</a>
+        <a className="hammingLink" target="_blank" rel="noreferrer" href="https://en.wikipedia.org/wiki/Hamming_code">Hamming Code</a>
       </div>
     </div>
   );
