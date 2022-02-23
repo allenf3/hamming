@@ -1,0 +1,33 @@
+.main {
+  margin: 10px;
+}
+
+p {
+  margin-left: 50px;
+  width: 650px;
+}
+
+.hammingLink {
+  margin-left: 50px;
+}
+
+pre {
+  margin-left: 50px;
+}
+
+.display-hamming-grid {
+  width: 580px;
+  height: 520px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-left: 75px;
+}
+
+.display-hamming-grid > button {
+  font-size: 40pt;
+  font-weight: bold;
+  width: 120px;
+  display: flex;
+  margin: 10px;
+}

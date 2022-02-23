@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Table from '@mui/material/Table';
@@ -26,6 +25,16 @@ function AdminReport() {
     } else {
       setValue(0);
     }
+  };
+
+  const getDisplayResult = (bit, noErrors) => {
+    if (bit) {
+      return bit;
+    }
+    if (noErrors) {
+      return 'No Errors';
+    }
+    return 'Two Errors';
   };
 
   useEffect(() => {
@@ -76,85 +85,81 @@ function AdminReport() {
         )}
       </div>
       <div hidden={value !== 1}>
-        <h2>All Statistics</h2>
-        <TableContainer className="statistics" component={Paper}>
-          <Table>
-            <TableBody>
-              <TableRow>
-                <TableCell>Total Attempts</TableCell>
-                <TableCell>{totalAttempts}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Correct Answers</TableCell>
-                <TableCell>{correctAnswers}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Incorrect Answers</TableCell>
-                <TableCell>{incorrectAnswers}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Correct Percentage</TableCell>
-                <TableCell>
-                  {totalAttempts > 0 ? ((correctAnswers / totalAttempts) * 100).toFixed(1) : 'Zero'}
-                  %
-                </TableCell>
-              </TableRow>
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <h3>All History</h3>
-        <TableContainer className="history" component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Attempt</TableCell>
-                <TableCell>User</TableCell>
-                <TableCell>Answer Given</TableCell>
-                <TableCell>Correct Answer</TableCell>
-                <TableCell>Result</TableCell>
-                <TableCell>Submitted on</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {allResults.map((row, index) => (
-                <TableRow
-                  key={row.attemptId}
-                >
+        <div>
+          <h2>All Statistics</h2>
+          <TableContainer style={{ width: '250px' }} component={Paper}>
+            <Table>
+              <TableBody>
+                <TableRow>
+                  <TableCell>Total Attempts</TableCell>
+                  <TableCell>{totalAttempts}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Correct Answers</TableCell>
+                  <TableCell>{correctAnswers}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Incorrect Answers</TableCell>
+                  <TableCell>{incorrectAnswers}</TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>Correct Percentage</TableCell>
                   <TableCell>
-                    {index + 1}
-                  </TableCell>
-                  <TableCell>
-                    {row.userId
-                      ? String(row.userId).slice(6)
-                      : 'Anonymous' }
-                  </TableCell>
-                  <TableCell>
-                    { row.bitSelected
-                      ? row.bitSelected
-                      : row.noErrorsSelected
-                        ? 'No Errors'
-                        : 'Two Errors' }
-                  </TableCell>
-                  <TableCell>
-                    { row.actualBit
-                      ? row.actualBit
-                      : row.actualNoErrors
-                        ? 'No Errors'
-                        : 'Two Errors' }
-                  </TableCell>
-                  <TableCell>
-                    {row.correct
-                      ? 'Correct'
-                      : 'Incorrect' }
-                  </TableCell>
-                  <TableCell>
-                    {row.submittedOn}
+                    {totalAttempts > 0 ? ((correctAnswers / totalAttempts) * 100).toFixed(1) : 'Zero'}
+                    %
                   </TableCell>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+        <div>
+          <h3>All History</h3>
+          <TableContainer style={{ width: '900px' }} component={Paper}>
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableCell>Attempt</TableCell>
+                  <TableCell>User</TableCell>
+                  <TableCell>Answer Given</TableCell>
+                  <TableCell>Correct Answer</TableCell>
+                  <TableCell>Result</TableCell>
+                  <TableCell>Submitted On</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {allResults.map((row, index) => (
+                  <TableRow
+                    key={row.attemptId}
+                  >
+                    <TableCell>
+                      {index + 1}
+                    </TableCell>
+                    <TableCell>
+                      {row.userId
+                        ? String(row.userId).slice(6)
+                        : 'Anonymous' }
+                    </TableCell>
+                    <TableCell>
+                      { getDisplayResult(row.bitSelected, row.noErrorsSelected) }
+                    </TableCell>
+                    <TableCell>
+                      { getDisplayResult(row.actualBit, row.actualNoErrors) }
+                    </TableCell>
+                    <TableCell>
+                      {row.correct
+                        ? 'Correct'
+                        : 'Incorrect' }
+                    </TableCell>
+                    <TableCell>
+                      {row.submittedOn}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
     </Box>
   );

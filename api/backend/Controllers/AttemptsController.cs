@@ -25,6 +25,7 @@ public class AttemptsController : ControllerBase
         try
         {
             var allAttempts = await _db.Attempts.ToListAsync();
+            allAttempts.Reverse();
             return allAttempts.Count > 0 ? new OkObjectResult(allAttempts) : new NotFoundResult();
         }
         catch (Exception e)
@@ -40,6 +41,7 @@ public class AttemptsController : ControllerBase
         try
         {
             var userAttempts = await _db.Attempts.Where(a => a.UserId == userId).ToListAsync();
+            userAttempts.Reverse();
             return userAttempts.Count > 0 ? new OkObjectResult(userAttempts) : new NotFoundResult();
         }
         catch (Exception e)
