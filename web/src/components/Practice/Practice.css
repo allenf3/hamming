@@ -6,13 +6,24 @@
   display: flex;
 }
 
+.welcome {
+  width: 40%;
+}
+
+.display-container {
+  display: flex;
+  width: 1030px;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
 .together {
   width: 1000px;
 }
 
 .heading {
   margin-bottom: 20px;
-  width: 1010px;
+  width: 60%;
 }
 
 .hammingGrid {

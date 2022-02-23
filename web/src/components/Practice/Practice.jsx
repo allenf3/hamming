@@ -61,9 +61,13 @@ const Practice = ({ newExercise }) => {
   return (
     <div className="main">
       <HomeLink />
-      <div className="container heading">
-        <h1>Practice working with Hamming codes</h1>
-        <Welcome />
+      <div className="display-container">
+        <div className="heading">
+          <h1>Practice working with Hamming codes</h1>
+        </div>
+        <div className="welcome">
+          <Welcome />
+        </div>
       </div>
       <div className="container together">
         <HammingGrid code={code} anySelected={anySelected} toggleSelected={toggleAnySelected} />
