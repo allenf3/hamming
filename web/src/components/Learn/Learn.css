@@ -2,6 +2,15 @@
   margin: 10px;
 }
 
+p {
+  margin-left: 50px;
+  width: 650px;
+}
+
+pre {
+  margin-left: 50px;
+}
+
 .display-hamming-grid {
   width: 580px;
   height: 520px;

@@ -10,8 +10,9 @@ function DisplayHammingGrid({ gridInfo }) {
       { [...Array(16)].map((element, index) => (
         <DisplayHammingBit
           key={index}
-          bit={index}
+          bit={gridInfo.bits[index]}
           index={index}
+          first={index === 0}
           parity={gridInfo.parity.includes(index)}
           count={gridInfo.counted.includes(index)}
         />
@@ -31,6 +32,7 @@ DisplayHammingGrid.propTypes = {
   gridInfo: PropTypes.shape({
     parity: PropTypes.arrayOf(PropTypes.number),
     counted: PropTypes.arrayOf(PropTypes.number),
+    bits: PropTypes.arrayOf(PropTypes.number),
   }),
 };
 
