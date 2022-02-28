@@ -105,18 +105,18 @@ function Learn() {
         </p>
         <p>
           The grid below represents the bits we are sending in an arrangement that makes it easier
-          to visualize how the error correction works. The numbers here do not represent the value
-          or data being sent &#40;must be 0 or 1&#41; but indicate the order that they will be
+          to visualize how the error correction works. The numbers here &#40;0 - 15&#41; do not
+          represent the value or data being sent but indicate the order that they will be
           sent. Bits 3, 5, 6, 7, 9, 10, 11, 12, 13, 14, and 15 are the 11 bits that we want to
           send. Bits 1, 2, 4 and 8 are the error-correcting bits and bit 0 is a parity bit.
         </p>
         <DisplayHammingGrid className="hamming-grid" gridInfo={indexBits} />
         <p>
           Each error-correcting bit &#34;counts&#34; a group of data bits and becomes a 1 if there
-          is an odd number of 1 bits and a 0 if there are an even number of 1 bits. Let&#39;s
-          replace the index values of the bits with the data we want to send. If we spent 73 hours
-          studying in the month of December, we will need to send the code 01101001001, where 011
-          represents the month of December and 01001001 is binary for 73. So
+          is an odd number of 1 bits and a 0 if there are zero or an even number of 1 bits.
+          Let&#39;s replace the index values of the bits with the data we want to send. If we spent
+          73 hours studying in the month of December, we will need to send the code 01101001001,
+          where 011 represents the month of December and 01001001 is binary for 73. So
           bit 3 will be set to 0, bit 5 will be set to 1, bit 6 will be set to 1, and so on.
         </p>
         <DisplayHammingGrid className="hamming-grid" gridInfo={dataBits} />
@@ -138,7 +138,7 @@ function Learn() {
       </p>
       <DisplayHammingGrid className="hamming-grid" gridInfo={setBit4} />
       <p>
-        Bit 8 will be set by the bits directly to the right of it and the bits on the botton
+        Bit 8 will be set by the bits directly to the right of it and the bits on the bottom
         row. There are three 1s, so bit 8 is set to 1.
       </p>
       <DisplayHammingGrid className="hamming-grid" gridInfo={setBit8} />
