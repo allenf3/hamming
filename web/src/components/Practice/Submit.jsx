@@ -15,7 +15,7 @@ function Submit({
 
   if (error) {
     return (
-      <div>There was a problem submiting the response</div>
+      <div>There was a problem submitting the response.</div>
     );
   }
 
