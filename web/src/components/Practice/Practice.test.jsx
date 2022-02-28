@@ -35,13 +35,17 @@ const testSetup = () => {
   mockApi.onGet(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(200, testCodeValid);
 };
 
-const testSetupAndRender = () => {
-  testSetup();
+const testRender = () => {
   render(
     <BrowserRouter>
       <Practice />
     </BrowserRouter>,
   );
+};
+
+const testSetupAndRender = () => {
+  testSetup();
+  testRender();
 };
 
 test('home link present on practice page', async () => {
@@ -52,6 +56,14 @@ test('home link present on practice page', async () => {
 describe('page is rendered', () => {
   beforeEach(async () => {
     testSetupAndRender();
+  });
+
+  test('server error results in error message', async() => {
+    const mockApi = new MockAdapter(axios);
+    mockApi.onPost(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(500, testCodeValid);
+    fireEvent.click(await screen.findByText('If no errors, click here'));
+    fireEvent.click(screen.getByText('Submit Response'));
+    expect(await screen.findByText('There was a problem submitting the response.')).toBeInTheDocument();
   });
 
   test('practice page renders correctly', async () => {
