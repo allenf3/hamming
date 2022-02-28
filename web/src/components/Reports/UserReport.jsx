@@ -39,6 +39,16 @@ function UserReport() {
     );
   }
 
+  const getDisplayResult = (bit, noErrors) => {
+    if (bit) {
+      return bit;
+    }
+    if (noErrors) {
+      return 'No Errors';
+    }
+    return 'Two Errors';
+  };
+
   return (
     <>
       <div>
@@ -91,16 +101,10 @@ function UserReport() {
                     {index + 1}
                   </TableCell>
                   <TableCell>
-                    { row.bitSelected
-                      || row.noErrorsSelected
-                      ? 'No Errors'
-                      : 'Two Errors' }
+                    { getDisplayResult(row.bitSelected, row.noErrorsSelected) }
                   </TableCell>
                   <TableCell>
-                    { row.actualBit
-                      || row.actualNoErrors
-                      ? 'No Errors'
-                      : 'Two Errors' }
+                    { getDisplayResult(row.actualBit, row.actualNoErrors) }
                   </TableCell>
                   <TableCell>
                     {row.correct
