@@ -56,7 +56,7 @@ namespace backend.Tests.Controllers
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
-                Assert.Equal(true, attemptResponse?.Correct);
+                Assert.True(attemptResponse?.Correct);
             }
 
             [Fact]
@@ -69,7 +69,7 @@ namespace backend.Tests.Controllers
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
-                Assert.Equal(false, attemptResponse?.Correct);
+                Assert.False(attemptResponse?.Correct);
             }
 
             [Fact]
@@ -82,7 +82,7 @@ namespace backend.Tests.Controllers
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
-                Assert.Equal(true, attemptResponse?.Correct);
+                Assert.True(attemptResponse?.Correct);
 
                 postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
                 {
@@ -91,7 +91,7 @@ namespace backend.Tests.Controllers
                 });
                 Assert.Equal(200, postResponse?.StatusCode);
                 attemptResponse = postResponse?.Value is not null ? (AttemptResponse)postResponse.Value : null;
-                Assert.Equal(false, attemptResponse?.Correct);
+                Assert.False(attemptResponse?.Correct);
                 Assert.Equal(10, attemptResponse?.FlippedBit);
             }
 
@@ -105,7 +105,7 @@ namespace backend.Tests.Controllers
                 });
                 Assert.Equal(200, postResponse.StatusCode);
                 var attemptResponse = postResponse.Value is not null ? (AttemptResponse)postResponse.Value : null;
-                Assert.Equal(true, attemptResponse?.Correct);
+                Assert.True(attemptResponse?.Correct);
 
                 postResponse = (OkObjectResult)await testHcController.Submit(new Attempt
                 {
