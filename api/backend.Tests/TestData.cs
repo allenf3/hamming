@@ -22,7 +22,7 @@ namespace backend.Tests
         {
             Id = 2,
             Code = new Byte[] { (byte)43, (byte)178 },
-            ExerciseCode = new Byte[] { (byte)172, (byte)95 },
+            ExerciseCode = new Byte[] { (byte)43, (byte)146 },
             ErrorType = HammingUtilities.TransmissionErrorType.OneBitFlipped,
             FlippedBit = 10
         };
