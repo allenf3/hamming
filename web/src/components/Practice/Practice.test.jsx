@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { fireEvent, render, screen } from '@testing-library/react';
+import {
+  fireEvent, render, screen, waitFor,
+} from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import Practice from './Practice';
 import shouldLinkToHome from '../../testUtilities/shouldLinkToHome';
@@ -55,7 +57,7 @@ test('home link present on practice page', async () => {
 
 describe('page is rendered', () => {
   beforeEach(async () => {
-    testSetupAndRender();
+    await waitFor(() => testSetupAndRender());
   });
 
   test('server error results in error message', async () => {
