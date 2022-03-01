@@ -58,7 +58,7 @@ describe('page is rendered', () => {
     testSetupAndRender();
   });
 
-  test('server error results in error message', async() => {
+  test('server error results in error message', async () => {
     const mockApi = new MockAdapter(axios);
     mockApi.onPost(`${process.env.REACT_APP_BASE_API}/api/HammingCodes`).reply(500, testCodeValid);
     fireEvent.click(await screen.findByText('If no errors, click here'));
